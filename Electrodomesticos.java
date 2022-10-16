@@ -2,71 +2,60 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * Clase para simular la categoria Electrodomestricos de un catalogo
+ * Clase para simular la categoria Electrodomesticos de un catalogo
  * @see Categoria
  */
-public class Electrodomesticos implements Categoria{
+public class Electrodomesticos extends ComponenteCatalogo{
 
-    private ArrayList<Producto> productos;//los productos de la categoria
+    private ArrayList<ComponenteCatalogo> subcategorias;//los subcategorias de la categoria
 
     /**
      * Constructor
      */
     public Electrodomesticos(){
-        productos=new ArrayList<Producto>();
-        addProducto(new Microondas());
-        addProducto(new Horno());
-        addProducto(new Licuadora());
+        subcategorias=new ArrayList<ComponenteCatalogo>();
+        add(new Hornos());
+        add(new Licuadoras());
     }
 
     /**
-     * Metodo para obtener la lista de los productos de la categoria
-     * @return La lista donde estan los productos de la categoria
-     */
-    public ArrayList<Producto> getProductos(){
-        return productos;
-    }
-
-    /**
-     * Metodo para asignar una nueva lista se productos de la categoria
-     * @param productos La nueva lista de productos a asignar
-     */
-    public void setProductos(ArrayList<Producto> productos){
-        this.productos=productos;
-    }
-
-    /**
-     * Metodo para agregar un producto a la categoria
-     * @param producto El producto a agregar
-     */
-    public void addProducto(Producto producto){
-        productos.add(producto);
-    }
-
-    /**
-     * Metodo para eliminar un producto de la categoria
-     * @param producto El producto a eliminar de la categoria
-     */
-    public void eliminarProducto(Producto producto){
-        productos.remove(producto);
-    }
-
-    /**
-     * Metodo para obtener un iterador de los productos de la categoria
-     * @return Iterator El iterador de la categoria
+     * Metodo para agregar una subcategoria a la categoria
+     * @param componente La subcategoria a agregar
      */
     @Override
-    public Iterator crearIterador() {
-        return productos.iterator();
+    public void add(ComponenteCatalogo componente) {
+        subcategorias.add(componente);
     }
 
     /**
-     * Metodo para obtener el nombre de la categoria
-     * @return String El nombre de la categoria
+     * Metodo para eliminar una subcategoria de la categoria
+     * @param componente La subcategoria a eliminar de la categoria
      */
     @Override
-    public String getNombre() {
-        return "**Electrodomesticos**";
+    public void eliminar(ComponenteCatalogo componente) {
+        subcategorias.remove(componente);
     }
+
+    /**
+     * Metodo para obtener un nodo hijo 
+     * @return Componente catalogo El componente hijo 
+     */
+    @Override
+    public ComponenteCatalogo getHijo(int i) {
+        return subcategorias.get(i);
+    }
+
+    /**
+     * Metodo para imprimir las categorias y subcategorias del catalogo
+     */
+    @Override
+    public void imprimir() {
+        System.out.println("\nElectrodomesticos**\n");
+        Iterator<ComponenteCatalogo> iterador=subcategorias.iterator();
+        while(iterador.hasNext()){
+            ComponenteCatalogo componente=iterador.next();
+            componente.imprimir();
+        }
+    }
+
 }
-

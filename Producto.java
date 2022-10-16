@@ -1,4 +1,6 @@
-public class Producto {
+import java.util.Iterator;
+
+public class Producto extends ComponenteCatalogo implements Componentes{
     private String codigoDeBarras;
     private String nombre;
     private String departamento;
@@ -25,5 +27,19 @@ public class Producto {
 
     public double getPrecio(){
         return precio;
+    }
+
+    @Override
+    public void imprimir() {
+        System.out.println("\n"+nombre+"\n"+precio+"\nCodigo de barras: "+codigoDeBarras);
+    }
+
+    /**
+     * Metodo para crear un iterador de productos
+     * @return Iterator El iterador de los productos, un iterador nulo
+     */
+    @Override
+    public Iterator crearIterador() {
+        return new IteradorNulo();
     }
 }

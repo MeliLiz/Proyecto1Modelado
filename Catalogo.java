@@ -1,54 +1,68 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Catalogo {
+/**
+ * Clase para simular un catalogo
+ * @see Categoria
+ */
+public class Catalogo extends ComponenteCatalogo implements Componentes{
 
-    private ArrayList<Categoria> categoriasCatalogo;
+    private ArrayList<ComponenteCatalogo> categorias;//los categorias del catalogo
 
+    /**
+     * Constructor
+     */
     public Catalogo(){
-        categoriasCatalogo=new ArrayList<Categoria>(null);
-        addCategoria(new Electronica());
-        addCategoria(new Electrodomesticos());
-        addCategoria(new Alimenticios());
+        categorias=new ArrayList<ComponenteCatalogo>();
+        add(new Electrodomesticos());
+        add(new Electronica());
+        add(new Alimenticios());
     }
 
-    public ArrayList<Categoria> getCategorias(){
-        return categoriasCatalogo;
+    /**
+     * Metodo para agregar una categoria al catalogo
+     * @param componente La categoría a agregar
+     */
+    @Override
+    public void add(ComponenteCatalogo componente) {
+        categorias.add(componente);
     }
 
-    public void setCategoriasDisponibles(ArrayList<Categoria> categorias){
-        categoriasCatalogo=categorias;
+    /**
+     * Metodo para eliminar una categoria del catalogo
+     * @param Componente La categoría a eliminar del catalogo
+     */
+    @Override
+    public void eliminar(ComponenteCatalogo componente) {
+        categorias.remove(componente);
     }
 
-    public void addCategoria(Categoria categoria){
-        categoriasCatalogo.add(categoria);
+    /**
+     * Metodo para obtener un nodo hijo
+     * @param i El indice del hijo a obtener 
+     * @return Componente catalogo El componente hijo 
+     */
+    @Override
+    public ComponenteCatalogo getHijo(int i) {
+        return categorias.get(i);
     }
 
-    public void eliminarCategoria(Categoria categoria){
-        categoriasCatalogo.remove(categoria);
-    }
-
-    public void mostrarCatalogos(){
-        for (Categoria categoria : categoriasCatalogo) {
-            System.out.println("\n###"+categoria.getNombre()+"##\n");
-            Iterator iterador =categoria.crearIterador();
-            while (iterador.hasNext()) {
-                Producto producto=(Producto) iterador.next();
-                System.out.println(producto);
-            }
+    /**
+     * Metodo para imprimir las categorias del catalogo
+     */
+    @Override
+    public void imprimir() {
+        System.out.println("\nCatalogo**\n");
+        Iterator<ComponenteCatalogo> iterador=categorias.iterator();
+        while(iterador.hasNext()){
+            ComponenteCatalogo componente=iterador.next();
+            componente.imprimir();
         }
     }
 
-    public Producto buscarProducto(int idProducto){
-        for (Categoria categoria : categoriasCatalogo) {
-            Iterator iterador=categoria.crearIterador();
-            while(iterador.hasNext()){
-                Producto producto=(Producto)iterador.next();
-                if(producto.getCodigoDeBarras().equals(idProducto)){
-                    return producto;
-                }
-            }  
-        }
-        return null;
+    @Override
+    public Iterator crearIterador() {
+        return CompositeIterator(categorias.iterator());
     }
+
 }
