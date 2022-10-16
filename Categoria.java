@@ -51,7 +51,7 @@ public class Categoria extends ComponenteCatalogo implements Componentes{
      */
     @Override
     public void imprimir() {
-        System.out.println("\n**"+nombreCategoria+"**\n");
+        System.out.println("\n**"+nombreCategoria+"**");
         Iterator<ComponenteCatalogo> iterador=subcategorias.iterator();
         while(iterador.hasNext()){
             ComponenteCatalogo componente=iterador.next();

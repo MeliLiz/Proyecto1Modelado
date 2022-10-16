@@ -21,7 +21,7 @@ public class Prueba {
         Categoria enlatados=new Categoria("Enlatados");
 
         electronica.add(celulares);
-        electronica.add(celulares);
+        electronica.add(computadoras);
         electrodomesticos.add(hornos);
         electrodomesticos.add(licuadoras);
         alimenticios.add(lacteos);

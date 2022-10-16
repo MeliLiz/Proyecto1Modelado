@@ -1,13 +1,25 @@
 import java.util.Stack;
 import java.util.Iterator;
 
-public class CompositeIterator {
+/**
+ * Clase de un iterador composite
+ */
+public class CompositeIterator implements Iterator{
+
     Stack pila=new Stack<>();
 
+    /**
+     * Constructor
+     * @param iterador El iterador que usaremos
+     */
     public CompositeIterator(Iterator iterador){
         pila.push(iterador);
     }
 
+    /**
+     * Metodo para obtener el siguiente componente del iterador
+     * @return Object El siguiente componente del iterador
+     */
     public Object next(){
         if(hasNext()){
             Iterator iterador = (Iterator) pila.peek();
@@ -22,6 +34,10 @@ public class CompositeIterator {
         }
     }
 
+    /**
+     * Metodo para saber si el iterador tiene siguiente
+     * @return boolean true si hay siguiente, false en otro caso
+     */
     public boolean hasNext(){
         if(pila.empty()){
             return false;
@@ -36,6 +52,9 @@ public class CompositeIterator {
         }
     }
 
+    /**
+     * Metodo no soportado
+     */
     public void remove(){
         throw new UnsupportedOperationException();
     }
