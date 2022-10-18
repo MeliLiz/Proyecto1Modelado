@@ -91,6 +91,11 @@ public class Categoria extends ComponenteCatalogo{
         return null;
     }
 
+    /**
+     * Metodo para saber si la categoria tiene una determinada subcategoria
+     * @param nombreSubcategoria El nombre de la subcategoria buscada
+     * @return int El indice de la subcategoria en la lista de subcategorias de la categoria, -1 si no existe la categoria buscada
+     */
     public int haySubcategoria(String nombreSubcategoria){
         int indice=0;
         for (ComponenteCatalogo subcategoria : subcategorias) {

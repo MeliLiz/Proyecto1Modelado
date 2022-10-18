@@ -1,14 +1,22 @@
-import java.util.Iterator;
-
+/**
+ * La clase que simula un catalogo
+ */
 public class Catalogo {
 
     private Categoria catalogo;
     
+    /**
+     * Constructor
+     * @param nombreCatalogo "El nombre del catalogo"
+     */
     public Catalogo(String nombreCatalogo){
         catalogo=new Categoria("Catalogo "+nombreCatalogo);
         actualizar();
     }
 
+    /**
+     * Metodo para actualizar las categorias y productos del catalogo
+     */
     private void actualizar(){
 
         catalogo.eliminarSubcategorias();
@@ -58,10 +66,17 @@ public class Catalogo {
         enlatados.add(new ChicharosHerdz());
     }
 
+    /**
+     * Metodo para mostrar el catalogo completo
+     */
     public void imprimirCatalogo(){
         catalogo.imprimir();
     }
 
+    /**
+     * Metodo para imprimir solo una categoria del catalogo
+     * @param categoria El nombre de la categoria por imprimir
+     */
     public void imprimirCategoria(String categoria){
         int indice = catalogo.haySubcategoria(categoria);
         if(indice!=-1){
