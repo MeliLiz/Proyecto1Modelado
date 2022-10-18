@@ -3,7 +3,7 @@ import java.util.Iterator;
 /**
  * Clase que simula un producto del catalogo
  */
-public class Producto extends ComponenteCatalogo implements Componentes{
+public class Producto extends ComponenteCatalogo{
 
     private String codigoDeBarras;
     private String nombre;
@@ -71,5 +71,14 @@ public class Producto extends ComponenteCatalogo implements Componentes{
     @Override
     public Iterator crearIterador() {
         return new IteradorNulo();
+    }
+
+    /**
+     * Metodo para obtener un iterador de las categorias
+     * @return Iterator El iterador de una subcategoria
+     */
+    @Override
+    public Iterator getIteradorSubcategoria(String nombreSubcategoria) {
+        return crearIterador();
     }
 }

@@ -1,3 +1,4 @@
+import java.util.Iterator;
 /**
  * Clase abstracta que simula el componente de un catalogo
  */
@@ -64,6 +65,23 @@ public abstract class ComponenteCatalogo {
      * @return double El precio del producto
      */
     public double getPrecio(){
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Metodo para crear un iterador del componente
+     * @return Iterator El iterador del componente
+     */
+    public Iterator crearIterador(){
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Metodo para obtener un iterador de una subcategoria del catalogo
+     * @param nombreSubcategoria El nombre de la subcategoria
+     * @return Iterator El iterador de la subcategoria
+     */
+    public Iterator getIteradorSubcategoria(String nombreSubcategoria){
         throw new UnsupportedOperationException();
     }
 }
