@@ -3,20 +3,19 @@
  */
 public interface Servicio {
 
-    /**
-     * Método para registrar a un nuevo usuario
-     */
-    public void registrarse();
 
     /**
      * Método para iniciar sesión
+     * @param cliente El cliente que quiere iniciar sesion
+     * @return Idioma el idioma del cliente
      */
-    public void iniciarSesion();
+    public Idioma iniciarSesion(Cliente cliente);
 
     /**
-     * Método para mostrar el catálogo
+     * Metodo para ostrar el catalogo
      */
-    public void agregarProducto();
+    public void mostrarCatalogo();
+
 
     /**
      * Método para realizar una compra
@@ -24,22 +23,7 @@ public interface Servicio {
     public void realizarCompra();
 
     /**
-     * Método para cancelar una compra
+     * Metodo para salir del sistema
      */
-    public void cancelarCompra();
-
-    /**
-     * Método para mostrar ticket
-     */
-    public void mostrarTicket();
-
-    /**
-     * Método para cerrar sesion
-     */
-    public void cerrarSesion();
-
-    /**
-     * Método para canjear oferta
-     */
-    public void CanjearOferta();
+    public void salir();
 }

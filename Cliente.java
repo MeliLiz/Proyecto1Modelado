@@ -14,10 +14,19 @@ public class Cliente implements Observador, Serializable {
     private int cuentaBancaria;
     private String pais;
     private int ID;
-    private ArrayList<Producto> carrito;
     private double totalCompra;
-    private TiendaProxy tienda;
+    private Tienda tienda;
     private double oferta;
+
+    /**
+     * Constructor para clientes provisionales
+     * @param nombreUsuario
+     * @param contrasena
+     */
+    public Cliente(String nombreUsuario, String contrasena){
+        this.nombreUsuario=nombreUsuario;
+        this.contrasena=contrasena;
+    }
 
     /**
      * Constructor con parametros
@@ -32,7 +41,7 @@ public class Cliente implements Observador, Serializable {
      * @param ID             El ID del cliente
      */
     public Cliente(String nombreUsuario, String contrasena, String nombreCliente, int telefono, String direccion,
-            int cuentaBancaria, String pais, int ID) {
+        int cuentaBancaria, String pais, int ID, Tienda tienda) {
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
         this.nombreCliente = nombreCliente;
@@ -41,9 +50,8 @@ public class Cliente implements Observador, Serializable {
         this.cuentaBancaria = cuentaBancaria;
         this.pais = pais;
         this.ID = ID;
-        this.carrito = new ArrayList<Producto>();
         this.totalCompra = 0;
-        this.tienda = new TiendaProxy();
+        this.tienda = tienda;
         this.oferta = 0;
     }
 
@@ -191,23 +199,6 @@ public class Cliente implements Observador, Serializable {
         this.ID = ID;
     }
 
-    /**
-     * Método que regresa el carrito de compras del cliente
-     * 
-     * @return El carrito de compras del cliente
-     */
-    public ArrayList<Producto> getCaritoCliente() {
-        return this.carrito;
-    }
-
-    /**
-     * Método para cambiar el carrito de compras del cliente
-     * 
-     * @param carrito El nuevo carrito de compras del cliente
-     */
-    public void setCarritoCliente(ArrayList<Producto> carrito) {
-        this.carrito = carrito;
-    }
 
     /**
      * Método que regresa el total de compra del cliente
@@ -232,7 +223,7 @@ public class Cliente implements Observador, Serializable {
      * 
      * @return La tienda del cliente
      */
-    public TiendaProxy getTiendaProxyCliente() {
+    public Tienda getTiendaProxyCliente() {
         return this.tienda;
     }
 
@@ -241,7 +232,7 @@ public class Cliente implements Observador, Serializable {
      * 
      * @param tienda La nueva tienda del cliente
      */
-    public void setPaisCliente(TiendaProxy tienda) {
+    public void setPaisCliente(Tienda tienda) {
         this.tienda = tienda;
     }
 

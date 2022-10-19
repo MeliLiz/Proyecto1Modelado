@@ -1,3 +1,4 @@
+import java.util.Iterator;
 /**
  * La clase que simula un catalogo
  */
@@ -84,6 +85,25 @@ public class Catalogo {
         }else{
             System.out.println("No existe la categoria "+ categoria);
         }
+    }
+
+    /**
+     * Metodo para obtener un producto del catalogo
+     * @param codigo El codigo de barras del producto
+     * @return Producto El producto buscado, null si el producto no esta en el catalogo
+     */
+    public Producto buscarProducto(String codigo){
+        Iterator iterador=catalogo.crearIterador();
+        while(iterador.hasNext()){
+            ComponenteCatalogo componente=(ComponenteCatalogo)iterador.next();
+            if(componente instanceof Producto){
+                Producto producto=(Producto) componente;
+                if(producto.getCodigoDeBarras().equals(codigo)){
+                    return producto;
+                }
+            }
+        }
+        return null;
     }
 
     public static void main(String[] args) {

@@ -83,11 +83,11 @@ public class RegistroTienda {
     }
 
     public static void main(String[] args) {
-        Cliente cliente1 = new Cliente("eyeRaven", null, null, 0, null, 0, null, 12323);
-        Cliente cliente2 = new Cliente("Clara", null, null, 0, null, 0, null, 22424);
-        Cliente cliente3 = new Cliente("Damian", null, null, 0, null, 0, null, 1234344);
+        Cliente cliente1 = new Cliente("eyeRaven", null, null, 0, null, 0, null, 12323, null);
+        Cliente cliente2 = new Cliente("Clara", null, null, 0, null, 0, null, 22424, null);
+        Cliente cliente3 = new Cliente("Damian", null, null, 0, null, 0, null, 1234344, null);
 
-        Tienda tienda = new Tienda(new EspanolLatino());
+        Tienda tienda = new Tienda();
         tienda.registrar(cliente1);
         tienda.registrar(cliente2);
         tienda.registrar(cliente3);
