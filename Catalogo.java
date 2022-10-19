@@ -2,7 +2,6 @@
  * La clase que simula un catalogo
  */
 public class Catalogo {
-
     private Categoria catalogo;
     
     /**
@@ -91,6 +90,7 @@ public class Catalogo {
         Catalogo catalogo=new Catalogo("Prueba");
         //catalogo.imprimirCatalogo();
         catalogo.imprimirCategoria("Electronica");
+
     }
 
 }
