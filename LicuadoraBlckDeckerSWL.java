@@ -7,6 +7,6 @@ public class LicuadoraBlckDeckerSWL extends Producto{
      * Constructor
      */
     public LicuadoraBlckDeckerSWL(){
-        super("0000000000006","Licuadora BlckDecker SWL", "Electrodomesticos", 2500);
+        super("0000000000006","Licuadora BlckDecker SWL", "Electrodomésticos", 2500);
     }
 }

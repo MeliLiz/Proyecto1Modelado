@@ -30,5 +30,47 @@ public interface Idioma {
     /**
      * Método para enviar ofertas
      */
-    public void enviarOfertas();
+    public void anunciarOferta();
+
+    /**
+     * Metodo para pedir la cuenta bancaria al usuario
+     */
+    public void pedirCuentaBancaria();
+
+    /**
+     * Metodo para anunciar la pantalla de compra segura
+     */
+    public void compraSegura();
+
+    /**
+     * Metodo para indicar el total a pagar
+     */
+    public void porPagar(double porPagar);
+
+    /**
+     * Metodo para indicar un error de codigo de barras de un producto
+     */
+    public void errorCodigoProducto();
+
+    /**
+     * Metodo para indicar un error en input
+     */
+    public void errorInput();
+
+    /**
+     * Método para indicar una oferta que se aplicó
+     * @param deptoOferta
+     */
+    public void ofertaAplicada(String deptoOferta);
+
+    /**
+     * Metodo para indicar el subtotal de compra
+     */
+    public void subtotal(double subtotal);
+
+    /**
+     * Metodo para indicar el total de compra
+     * @param total
+     */
+    public void total(double total);
 }

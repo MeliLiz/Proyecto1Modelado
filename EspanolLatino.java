@@ -55,9 +55,54 @@ public class EspanolLatino implements Idioma {
     }
 
     @Override
-    public void enviarOfertas() {
+    public void anunciarOferta() {
         System.out.println("Usted tiene una oferta disponible en su pais");
 
     }
 
+    @Override
+    public void pedirCuentaBancaria() {
+        System.out.println("Por favor ingrese su numero de cuenta bancaria");
+    }
+
+    @Override
+    public void compraSegura() {
+        System.out.println("**Compra segura**");
+        
+    }
+
+    @Override
+    public void porPagar(double porPagar) {
+        System.out.println("Pir pagar: $");
+        
+    }
+
+    @Override
+    public void errorCodigoProducto() {
+        System.out.println("No existe un producto con ese codigo");
+        
+    }
+
+    @Override
+    public void errorInput() {
+        System.out.println("No ingresó un número");
+        
+    }
+
+    @Override
+    public void ofertaAplicada(String deptoOferta) {
+        System.out.println("Se ha aplicado un descuento del 30% en "+deptoOferta);
+    }
+
+    @Override
+    public void subtotal(double subtotal) {
+        System.out.println("Subtotal: $"+subtotal);
+        
+    }
+
+    @Override
+    public void total(double total) {
+        System.out.println("Total: $"+total);
+        
+    }
 }

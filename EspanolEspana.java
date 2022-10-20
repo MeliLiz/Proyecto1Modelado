@@ -54,8 +54,55 @@ public class EspanolEspana implements Idioma {
     }
 
     @Override
-    public void enviarOfertas() {
+    public void anunciarOferta() {
         System.out.println("Sois afortunado, teneis una oferta disponible en su pais");
 
+    }
+
+    @Override
+    public void pedirCuentaBancaria() {
+        System.out.println("Favor de ingresar el numero de su cuenta de banco");
+        
+    }
+
+    @Override
+    public void compraSegura() {
+        System.out.println("**Compra segura**");
+        
+    }
+
+    @Override
+    public void porPagar(double porPagar) {
+        System.out.println("Vos debe pagar: $");
+        
+    }
+
+    @Override
+    public void errorCodigoProducto() {
+        System.out.println("El producto que ha elegido no existe");
+        
+    }
+
+    @Override
+    public void errorInput() {
+        System.out.println("No ha ingresado un número");
+        
+    }
+
+    @Override
+    public void ofertaAplicada(String deptoOferta) {
+        System.out.println("Enhorabuena!, se ha aplicado un descuento en "+deptoOferta);
+    }
+
+    @Override
+    public void subtotal(double subtotal) {
+        System.out.println("Subtotal: $"+subtotal);
+        
+    }
+
+    @Override
+    public void total(double total) {
+        System.out.println("Total: $"+total);
+        
     }
 }

@@ -16,7 +16,7 @@ public class Cliente implements Observador, Serializable {
     private int ID;
     private double totalCompra;
     private Tienda tienda;
-    private double oferta;
+    private String deptoOferta;
 
     /**
      * Constructor para clientes provisionales
@@ -52,7 +52,7 @@ public class Cliente implements Observador, Serializable {
         this.ID = ID;
         this.totalCompra = 0;
         this.tienda = tienda;
-        this.oferta = 0;
+        this.deptoOferta = "";
     }
 
     /**
@@ -237,21 +237,21 @@ public class Cliente implements Observador, Serializable {
     }
 
     /**
-     * Método que regresa la oferta disponible del cliente
+     * Método que regresa la deptoOferta disponible del cliente
      * 
-     * @return La oferta disponible del cliente
+     * @return La deptoOferta disponible del cliente
      */
-    public double getOfertaCliente() {
-        return this.oferta;
+    public String getDeptoOferta() {
+        return this.deptoOferta;
     }
 
     /**
-     * Método para la oferta disponible del cliente
+     * Método para la deptoOferta disponible del cliente
      * 
-     * @param oferta La nueva oferta disponible del cliente
+     * @param deptoOferta La nueva deptoOferta disponible del cliente
      */
-    public void setOfertaCliente(double oferta) {
-        this.oferta = oferta;
+    public void setDeptoOferta(String deptoOferta) {
+        this.deptoOferta = deptoOferta;
     }
 
     /**
@@ -260,6 +260,12 @@ public class Cliente implements Observador, Serializable {
      */
     @Override
     public void actualizar() {
-
+        if(pais.equals("México")){
+            deptoOferta="Alimenticios";
+        }else if(pais.equals("España")){
+            deptoOferta="Electrodomésticos";
+        }else if(pais.equals("Estados Unidos")){
+            deptoOferta="Electrónica";
+        }
     }
 }

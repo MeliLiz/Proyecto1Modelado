@@ -1,5 +1,6 @@
 import java.util.Random;
 
+
 /**
  * Clase para el idioma en Ingles
  */
@@ -27,7 +28,7 @@ public class English implements Idioma {
      */
     @Override
     public void completarCompra() {
-        System.out.println("Your purchase it's been succefull");
+        System.out.println("Your purchase has been successful");
 
     }
 
@@ -44,7 +45,7 @@ public class English implements Idioma {
         mesEntrega++; // para que el rango sea de 1 - 12
 
         System.out.println(
-                "You will have your product the day: " + diaEntrega + "/" + mesEntrega + "/" + "2022");
+                "You will receive your product by: " + diaEntrega + "/" + mesEntrega + "/" + "2022");
     }
 
     @Override
@@ -54,8 +55,54 @@ public class English implements Idioma {
     }
 
     @Override
-    public void enviarOfertas() {
-        System.out.println("You are lucky, you have an offer available in yout country");
+    public void anunciarOferta() {
+        System.out.println("You are lucky, you have a discount available in your country");
 
+    }
+
+    @Override
+    public void pedirCuentaBancaria() {
+        System.out.println("Please enter your bank occount");
+    }
+
+    @Override
+    public void compraSegura() {
+        System.out.println("**Secure purchase**");
+        
+    }
+
+    @Override
+    public void porPagar(double porPagar) {
+        System.out.println("You have to pay: $");
+        
+    }
+
+    @Override
+    public void errorCodigoProducto() {
+        System.out.println("The product doesn't exist");
+        
+    }
+
+    @Override
+    public void errorInput() {
+        System.out.println("You didn't enter a number");
+        
+    }
+
+    @Override
+    public void ofertaAplicada(String deptoOferta) {
+        System.out.println("You got 30% off on "+deptoOferta);
+    }
+
+    @Override
+    public void subtotal(double subtotal) {
+        System.out.println("Subtotal: $"+subtotal);
+        
+    }
+
+    @Override
+    public void total(double total) {
+        System.out.println("Total: $"+total);
+        
     }
 }

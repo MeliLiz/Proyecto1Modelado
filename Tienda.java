@@ -1,5 +1,6 @@
 import java.util.Hashtable;
 import java.util.Set;
+import java.util.Random;
 
 /**
  * Clase para la tienda virtual
@@ -28,11 +29,29 @@ public class Tienda implements SujetoObservable, Servicio {
             if(verificarContrasena(id, contrasena)){
                 Cliente usuario=getCliente(nombreUsuario, contrasena);
                 String pais= usuario.getPaisCliente();
+                notificar();
                 return getIdioma(pais);
             }
         }
         return null;
         
+    }
+
+    /**
+     * Metodo para generar una oferta para un pais
+     */
+    public String generarOferta(){
+        Random random=new Random();
+        int num=random.nextInt(4);
+        String paisOferta="";
+        if(num==0){
+            paisOferta="España";
+        }else if(num==1){
+            paisOferta="Estados Unidos";
+        }else if(num==2){
+            paisOferta="México";
+        }
+        return paisOferta;
     }
 
     /**
@@ -62,11 +81,15 @@ public class Tienda implements SujetoObservable, Servicio {
     @Override
     public void notificar() {
         Set<Integer> llaves = clientes.keySet();
+        String paisOferta=generarOferta();
 
-        for (Integer llave : llaves) {
-            clientes.get(llave).actualizar();
+        if(paisOferta!=""){
+            for (Integer llave : llaves) {
+                if(clientes.get(llave).getPaisCliente().equals(paisOferta)){
+                    clientes.get(llave).actualizar();
+                }
+            }
         }
-
     }
 
     @Override
@@ -124,7 +147,7 @@ public class Tienda implements SujetoObservable, Servicio {
      * @param cuenta El numero de cuenta de banco del usuario
      * @return boolean true si la cuenta de banco coincide, false en otro caso
      */
-    private boolean verificarCuentaDeBanco(Integer idUsuario, int cuenta){
+    public boolean verificarCuentaDeBanco(Integer idUsuario, int cuenta){
         Set<Integer> llaves = clientes.keySet();
 
         for(Integer llave: llaves){
@@ -197,7 +220,7 @@ public class Tienda implements SujetoObservable, Servicio {
 
     @Override
     public void realizarCompra() {
-        // TODO Auto-generated method stub
+        
         
     }
 
@@ -237,6 +260,17 @@ public class Tienda implements SujetoObservable, Servicio {
     public Producto getProducto(String codigo){
         Producto producto=catalogo.buscarProducto(codigo);
         return producto;
+    }
+
+    public String getDeptoOferta(int idUsuario){
+        Set<Integer> llaves = clientes.keySet();
+
+        for(Integer llave: llaves){
+            if(clientes.get(llave).getIdCliente()==idUsuario){
+                return clientes.get(llave).getDeptoOferta();
+            }
+        }
+        return null;
     }
 
 }

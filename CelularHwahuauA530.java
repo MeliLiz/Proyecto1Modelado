@@ -8,6 +8,6 @@ public class CelularHwahuauA530 extends Producto{
      * Constructor
      */
     public CelularHwahuauA530(){
-        super("0000000000001","Celular Hwahuau A530", "Electronica", 7800);
+        super("0000000000001","Celular Hwahuau A530", "Electrónica", 7800);
     }
 }
