@@ -11,7 +11,7 @@ public class English implements Idioma {
     @Override
     public void saludar() {
         System.out.println("Welcomo to our virtual store");
-
+        System.out.println("Tha language of the store now is English");
     }
 
     /**
@@ -50,7 +50,10 @@ public class English implements Idioma {
 
     @Override
     public void mostrarMenuOpciones() {
-        // TODO Auto-generated method stub
+        System.out.println("Choose an option");
+        System.out.println("1) See product catalog");
+        System.out.println("2) Buy product");
+        System.out.println("3) Quit");
 
     }
 
@@ -78,6 +81,12 @@ public class English implements Idioma {
     }
 
     @Override
+    public void ingresarCodigoProducto() {
+        System.out.println("Please enter the barcode of the product");
+        System.out.println("If you're done adding products to your cart, pleas enter \"-1\"");
+    }
+
+    @Override
     public void errorCodigoProducto() {
         System.out.println("The product doesn't exist");
         
@@ -85,7 +94,7 @@ public class English implements Idioma {
 
     @Override
     public void errorInput() {
-        System.out.println("You didn't enter a number");
+        System.out.println("You didn't enter a valid number");
         
     }
 
@@ -104,5 +113,24 @@ public class English implements Idioma {
     public void total(double total) {
         System.out.println("Total: $"+total);
         
+    }
+
+    @Override
+    public void menuCarrito() {
+        System.out.println("Choose an option");
+        System.out.println("1) Add to cart");
+        System.out.println("2) Leave");
+    }
+
+    @Override
+    public void productoAgregadoAlCarrito(String nommbreProducto) {
+        System.out.println(nommbreProducto+" has been added to your cart");
+    }
+
+    @Override
+    public void menuFinalizarCompra() {
+        System.out.println("Choose an option");
+        System.out.println("1) Checkout");
+        System.out.println("2) Leave");
     }
 }

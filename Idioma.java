@@ -73,4 +73,21 @@ public interface Idioma {
      * @param total
      */
     public void total(double total);
+
+    /**
+     * Metodo para agregar un producto al carrito o salir
+     */
+    public void menuCarrito();
+
+    /**
+     * Metodo para indicar que el usuario debe ingresar el codigo de barras de un producto
+     */
+    public void ingresarCodigoProducto();
+
+    /**
+     * Metodo para indicar que un producto se añadió exitosamente al carrito de compra
+     */
+    public void productoAgregadoAlCarrito(String nombreProducto);
+
+    public void menuFinalizarCompra();
 }

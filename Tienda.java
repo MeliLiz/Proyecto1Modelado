@@ -9,6 +9,7 @@ public class Tienda implements SujetoObservable, Servicio {
 
     private Catalogo catalogo;
     private Hashtable<Integer, Cliente> clientes;
+    private Integer ultimoIDRegistrado;
 
     /**
      * Constructor con un parametro
@@ -18,6 +19,15 @@ public class Tienda implements SujetoObservable, Servicio {
     public Tienda() {
         this.catalogo = new Catalogo("");
         this.clientes = new Hashtable<Integer, Cliente>();
+        ultimoIDRegistrado=0;
+    }
+
+    public Integer getUltimoIDRegistrado(){
+        return ultimoIDRegistrado;
+    }
+
+    public void aumentarUltimoIDRegistrado(){
+        ultimoIDRegistrado++;
     }
 
     @Override
@@ -129,13 +139,10 @@ public class Tienda implements SujetoObservable, Servicio {
      * @return boolean true si la contraseña coincide con la de usuario, false en otro caso
      */
     private boolean verificarContrasena(Integer idUsuario, String contrasena){
-        Set<Integer> llaves = clientes.keySet();
-
-        for(Integer llave: llaves){
-            if(clientes.get(llave).getIdCliente()==idUsuario){
-                if(clientes.get(llave).getContrasena().equals(contrasena)){
-                    return true;
-                }    
+        Cliente cliente=clientes.get(idUsuario);
+        if(cliente!=null){
+            if(cliente.getContrasena().equals(contrasena)){
+                return true;
             }
         }
         return false;
@@ -148,13 +155,10 @@ public class Tienda implements SujetoObservable, Servicio {
      * @return boolean true si la cuenta de banco coincide, false en otro caso
      */
     public boolean verificarCuentaDeBanco(Integer idUsuario, int cuenta){
-        Set<Integer> llaves = clientes.keySet();
-
-        for(Integer llave: llaves){
-            if(clientes.get(llave).getIdCliente()==idUsuario){
-                if(clientes.get(llave).getCuentaBancariaCliente()==cuenta){
-                    return true;
-                }
+        Cliente cliente=clientes.get(idUsuario);
+        if(cliente!=null){
+            if(cliente.getCuentaBancariaCliente()==cuenta){
+                return true;
             }
         }
         return false;
@@ -262,13 +266,15 @@ public class Tienda implements SujetoObservable, Servicio {
         return producto;
     }
 
+    /**
+     * Metodo para obtener el departamento que tiene oferta
+     * @param idUsuario El id del usuario del que queremos saber su oferta (si tiene)
+     * @return String El departamento que tiene oferta
+     */
     public String getDeptoOferta(int idUsuario){
-        Set<Integer> llaves = clientes.keySet();
-
-        for(Integer llave: llaves){
-            if(clientes.get(llave).getIdCliente()==idUsuario){
-                return clientes.get(llave).getDeptoOferta();
-            }
+        Cliente cliente=clientes.get(idUsuario);
+        if(cliente!=null){
+            return cliente.getDeptoOferta();
         }
         return null;
     }

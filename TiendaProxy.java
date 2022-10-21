@@ -13,6 +13,7 @@ public class TiendaProxy implements Serializable, Servicio {
     ArrayList<Producto> carrito;
     Integer idUsuario;
     String deptoOferta;
+    Scanner scanner=new Scanner(System.in);
  
     /**
      * Constructor
@@ -35,13 +36,109 @@ public class TiendaProxy implements Serializable, Servicio {
             Integer id=tiendaReal.getIDCliente(cliente.getNombreUsuario(), cliente.getContrasena());
             idUsuario=id;
             deptoOferta=tiendaReal.getDeptoOferta(idUsuario);
+            idioma.saludar();
             if(deptoOferta!=""){
                 idioma.anunciarOferta();
             }
+            menu();
         }else{
             System.out.println("Nombre de usuario o contraseña no válidos");
         }
         return null;
+    }
+
+    public void menu(){
+        idioma.mostrarMenuOpciones();
+        
+        int respuesta=0;
+        while(true){
+            try {
+                respuesta=scanner.nextInt();
+                if(respuesta<4&&respuesta>0){
+                    break;
+                }else{
+                    idioma.errorInput();
+                }
+            } catch (InputMismatchException e) {
+                idioma.errorInput();
+            }
+        }
+        switch (respuesta) {
+            case 1:
+                mostrarCatalogo();
+                menu();
+                break;
+            case 2:
+                comenzarCompra();
+                break;
+            case 3:
+                salir();
+                break;
+        
+            default:
+                break;
+        }
+    }
+
+    /**
+     * Metodo para comenzar a realizar una compra
+     */
+    public void comenzarCompra(){
+        tiendaReal.mostrarCatalogo();
+        idioma.menuCarrito();
+        int respuestaUsuario=0;
+        while(true){
+            try {
+                respuestaUsuario=scanner.nextInt();
+                if(respuestaUsuario>0&&respuestaUsuario<3){
+                    break;
+                }else{
+                    idioma.errorInput();
+                }
+            } catch (InputMismatchException e) {
+                idioma.errorInput();
+            }
+        }
+        String codigoDeBarras="";
+        if(respuestaUsuario==1){
+            do{
+                idioma.ingresarCodigoProducto();
+                codigoDeBarras=scanner.nextLine();
+                Producto producto=tiendaReal.getProducto(codigoDeBarras);
+                if(producto!=null){
+                    agregarAlCarrito(codigoDeBarras);
+                    idioma.productoAgregadoAlCarrito(producto.getNombre());
+                }else{
+                    idioma.errorCodigoProducto();
+                }
+            }while(codigoDeBarras.equals("-1"));
+
+            
+        }else{
+            salir();
+        }
+    }
+
+    public void finalizarCompra(){
+        idioma.menuFinalizarCompra();
+        int respuesta=0;
+        while (true) {
+            try {
+                respuesta=scanner.nextInt();
+                if(respuesta>0&&respuesta<3){
+                    break;
+                }else{
+                    idioma.errorInput();
+                }
+            } catch (InputMismatchException e) {
+                idioma.errorInput();
+            }
+        }
+        if(respuesta==1){
+            realizarCompra(); 
+        }else{
+            salir();
+        }
     }
 
     @Override
@@ -75,6 +172,7 @@ public class TiendaProxy implements Serializable, Servicio {
                 if(verificado){
                     idioma.completarCompra();
                     mostrarTicket();
+                    idioma.darFechaDeEntrega();
                     break;
                 }else{
                     cancelarCompra();
@@ -84,6 +182,7 @@ public class TiendaProxy implements Serializable, Servicio {
                 idioma.errorInput();
             }
         }
+        salir();
     }
 
     @Override

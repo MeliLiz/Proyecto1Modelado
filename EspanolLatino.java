@@ -11,7 +11,7 @@ public class EspanolLatino implements Idioma {
     @Override
     public void saludar() {
         System.out.println("Bienvenido a nuestra tienda virtual");
-
+        System.out.println("El idioma de la tienda ahora es Español latino");
     }
 
     /**
@@ -50,8 +50,10 @@ public class EspanolLatino implements Idioma {
 
     @Override
     public void mostrarMenuOpciones() {
-        // TODO Auto-generated method stub
-
+        System.out.println("Seleccione una opcion");
+        System.out.println("1) Ver catalogo de la tienda");
+        System.out.println("2) Realizar compra");
+        System.out.println("3) Cerrar sesión");
     }
 
     @Override
@@ -85,7 +87,7 @@ public class EspanolLatino implements Idioma {
 
     @Override
     public void errorInput() {
-        System.out.println("No ingresó un número");
+        System.out.println("No ingresó un número válido");
         
     }
 
@@ -104,5 +106,30 @@ public class EspanolLatino implements Idioma {
     public void total(double total) {
         System.out.println("Total: $"+total);
         
+    }
+
+    @Override
+    public void menuCarrito() {
+        System.out.println("Seleccione una opción");
+        System.out.println("1) Agregar producto al carrito");
+        System.out.println("2) Salir");
+    }
+
+    @Override
+    public void ingresarCodigoProducto() {
+        System.out.println("Favor de ingresar el codigo de barras del producto");
+        System.out.println("Si ya terminó de poner productos en su carrito, ingrese \"-1\"");
+    }
+
+    @Override
+    public void productoAgregadoAlCarrito(String nombreProducto) {
+        System.out.println(nombreProducto+" se agregó al carrito");
+    }
+
+    @Override
+    public void menuFinalizarCompra() {
+        System.out.println("Seleccione una opción");
+        System.out.println("1) Finalizar compra");
+        System.out.println("2) Salir");
     }
 }
