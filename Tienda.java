@@ -1,11 +1,12 @@
 import java.util.Hashtable;
 import java.util.Set;
 import java.util.Random;
+import java.io.Serializable;
 
 /**
  * Clase para la tienda virtual
  */
-public class Tienda implements SujetoObservable, Servicio {
+public class Tienda implements SujetoObservable, Servicio, Serializable {
 
     private Catalogo catalogo;
     private Hashtable<Integer, Cliente> clientes;
@@ -37,7 +38,7 @@ public class Tienda implements SujetoObservable, Servicio {
         String contrasena=cliente.getContrasena();
         if(id!=-1){
             if(verificarContrasena(id, contrasena)){
-                Cliente usuario=getCliente(nombreUsuario, contrasena);
+                Cliente usuario=clientes.get(id);
                 String pais= usuario.getPaisCliente();
                 notificar();
                 return getIdioma(pais);
@@ -74,6 +75,7 @@ public class Tienda implements SujetoObservable, Servicio {
             System.out.println("No se pueden tener clientes null. Favor de registrar un cliente valido");
         } else {
             clientes.put(observador.getIdCliente(), observador);
+            aumentarUltimoIDRegistrado();
         }
 
     }
@@ -170,13 +172,15 @@ public class Tienda implements SujetoObservable, Servicio {
      * @param contrasena La contraseña del usuario buscado
      * @return Cliente El cliente buscado
      */
-    private Cliente getCliente(String nombre, String contrasena){
+    private Cliente getCliente(String nombre, String contrasena){//////////////////////////////////////////////////////////////////////////////Revisar este metodo
         Set<Integer> llaves = clientes.keySet();
 
         for(Integer llave: llaves){
-            if(clientes.get(llave).getNombreUsuario()==nombre){
-                if(clientes.get(llave).getContrasena()==contrasena){
-                    return clientes.get(llave);
+            if(clientes.get(llave).getNombreUsuario().equals(nombre)){
+                int ID=clientes.get(llave).getIdCliente();
+                if(clientes.get(ID).getContrasena().equals(contrasena)){
+                    int id=clientes.get(llave).getIdCliente();
+                    return clientes.get(id);
                 }
             }
         }

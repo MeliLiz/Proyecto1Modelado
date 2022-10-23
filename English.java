@@ -10,7 +10,7 @@ public class English implements Idioma {
      */
     @Override
     public void saludar() {
-        System.out.println("Welcomo to our virtual store");
+        System.out.println("\nWelcome to our virtual store");
         System.out.println("Tha language of the store now is English");
     }
 
@@ -19,7 +19,7 @@ public class English implements Idioma {
      */
     @Override
     public void despedirse() {
-        System.out.println("Good bye, see you soon");
+        System.out.println("\nGood bye, see you soon");
 
     }
 
@@ -28,7 +28,7 @@ public class English implements Idioma {
      */
     @Override
     public void completarCompra() {
-        System.out.println("Your purchase has been successful");
+        System.out.println("\nYour purchase has been successful");
 
     }
 
@@ -44,13 +44,12 @@ public class English implements Idioma {
         int mesEntrega = numeroRandom.nextInt(12); // nuemro random para el mes de entrega
         mesEntrega++; // para que el rango sea de 1 - 12
 
-        System.out.println(
-                "You will receive your product by: " + diaEntrega + "/" + mesEntrega + "/" + "2022");
+        System.out.println("\nYou will receive your product by: " + diaEntrega + "/" + mesEntrega + "/" + "2022");
     }
 
     @Override
     public void mostrarMenuOpciones() {
-        System.out.println("Choose an option");
+        System.out.println("\nChoose an option");
         System.out.println("1) See product catalog");
         System.out.println("2) Buy product");
         System.out.println("3) Quit");
@@ -59,53 +58,53 @@ public class English implements Idioma {
 
     @Override
     public void anunciarOferta() {
-        System.out.println("You are lucky, you have a discount available in your country");
+        System.out.println("\nYou are lucky, you have a discount available in your country");
 
     }
 
     @Override
     public void pedirCuentaBancaria() {
-        System.out.println("Please enter your bank occount");
+        System.out.println("\nPlease enter your bank occount");
     }
 
     @Override
     public void compraSegura() {
-        System.out.println("**Secure purchase**");
+        System.out.println("\n**Secure purchase**");
         
     }
 
     @Override
     public void porPagar(double porPagar) {
-        System.out.println("You have to pay: $");
+        System.out.println("You have to pay: $"+porPagar);
         
     }
 
     @Override
     public void ingresarCodigoProducto() {
-        System.out.println("Please enter the barcode of the product");
-        System.out.println("If you're done adding products to your cart, pleas enter \"-1\"");
+        System.out.println("\nPlease enter the barcode of the product");
+        System.out.println("If you're done adding products to your cart, please enter \"-1\"");
     }
 
     @Override
     public void errorCodigoProducto() {
-        System.out.println("The product doesn't exist");
+        System.out.println("\nThe product doesn't exist");
         
     }
 
     @Override
     public void errorInput() {
-        System.out.println("You didn't enter a valid number");
+        System.out.println("\nYou didn't enter a valid number");
         
     }
 
     @Override
     public void ofertaAplicada(String deptoOferta) {
-        System.out.println("You got 30% off on "+deptoOferta);
+        System.out.println("\nYou got 30% off on "+deptoOferta);
     }
 
     @Override
     public void subtotal(double subtotal) {
-        System.out.println("Subtotal: $"+subtotal);
+        System.out.println("\nSubtotal: $"+subtotal);
         
     }
 
@@ -117,20 +116,25 @@ public class English implements Idioma {
 
     @Override
     public void menuCarrito() {
-        System.out.println("Choose an option");
+        System.out.println("\nChoose an option");
         System.out.println("1) Add to cart");
         System.out.println("2) Leave");
     }
 
     @Override
     public void productoAgregadoAlCarrito(String nommbreProducto) {
-        System.out.println(nommbreProducto+" has been added to your cart");
+        System.out.println("\n"+nommbreProducto+" has been added to your cart");
     }
 
     @Override
     public void menuFinalizarCompra() {
-        System.out.println("Choose an option");
+        System.out.println("\nChoose an option");
         System.out.println("1) Checkout");
         System.out.println("2) Leave");
+    }
+
+    @Override
+    public void errorCuentaBancaria() {
+        System.out.println("You entered an invalid number of bank account, your purchase will be cancelled");
     }
 }

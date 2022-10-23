@@ -14,6 +14,7 @@ public class TiendaProxy implements Serializable, Servicio {
     Integer idUsuario;
     String deptoOferta;
     Scanner scanner=new Scanner(System.in);
+    Scanner scanner2=new Scanner(System.in);
  
     /**
      * Constructor
@@ -24,9 +25,6 @@ public class TiendaProxy implements Serializable, Servicio {
         carrito=new ArrayList<Producto>();;
     }
 
-    public void registrarse(Cliente cliente){
-        tiendaReal.registrar(cliente);
-    }
 
     @Override
     public Idioma iniciarSesion(Cliente cliente) {
@@ -103,16 +101,18 @@ public class TiendaProxy implements Serializable, Servicio {
         if(respuestaUsuario==1){
             do{
                 idioma.ingresarCodigoProducto();
-                codigoDeBarras=scanner.nextLine();
+                codigoDeBarras=scanner2.nextLine();
                 Producto producto=tiendaReal.getProducto(codigoDeBarras);
                 if(producto!=null){
                     agregarAlCarrito(codigoDeBarras);
                     idioma.productoAgregadoAlCarrito(producto.getNombre());
                 }else{
-                    idioma.errorCodigoProducto();
+                    if(!codigoDeBarras.equals("-1")){
+                        idioma.errorCodigoProducto();
+                    }
                 }
-            }while(codigoDeBarras.equals("-1"));
-
+            }while(!codigoDeBarras.equals("-1"));
+            finalizarCompra();
             
         }else{
             salir();
@@ -149,6 +149,7 @@ public class TiendaProxy implements Serializable, Servicio {
 
     @Override
     public void realizarCompra() {
+        System.out.println("ID: "+idUsuario);
         String deptoOferta=tiendaReal.getDeptoOferta(idUsuario);
         double suma=0;
         if(carrito.size()>0){
@@ -175,6 +176,7 @@ public class TiendaProxy implements Serializable, Servicio {
                     idioma.darFechaDeEntrega();
                     break;
                 }else{
+                    idioma.errorCuentaBancaria();
                     cancelarCompra();
                     break;
                 }

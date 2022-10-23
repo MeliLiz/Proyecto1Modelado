@@ -53,6 +53,7 @@ public class Cliente implements Observador, Serializable {
         this.totalCompra = 0;
         this.tienda = tienda;
         this.deptoOferta = "";
+        tienda.registrar(this);
     }
 
     /**
@@ -267,5 +268,9 @@ public class Cliente implements Observador, Serializable {
         }else if(pais.equals("Estados Unidos")){
             deptoOferta="Electrónica";
         }
+    }
+
+    public String toString(){
+        return nombreCliente+" "+pais;
     }
 }

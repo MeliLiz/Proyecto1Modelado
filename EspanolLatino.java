@@ -75,7 +75,7 @@ public class EspanolLatino implements Idioma {
 
     @Override
     public void porPagar(double porPagar) {
-        System.out.println("Pir pagar: $");
+        System.out.println("Pir pagar: $"+porPagar);
         
     }
 
@@ -131,5 +131,10 @@ public class EspanolLatino implements Idioma {
         System.out.println("Seleccione una opción");
         System.out.println("1) Finalizar compra");
         System.out.println("2) Salir");
+    }
+
+    @Override
+    public void errorCuentaBancaria() {
+        System.out.println("La cuenta bancaria ingresada no es correcta. Su compra se cancelará.");
     }
 }

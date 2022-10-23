@@ -38,6 +38,11 @@ public interface Idioma {
     public void pedirCuentaBancaria();
 
     /**
+     * Metodo para indicar que hay un error con la cuenta bancaria del usuario
+     */
+    public void errorCuentaBancaria();
+
+    /**
      * Metodo para anunciar la pantalla de compra segura
      */
     public void compraSegura();
