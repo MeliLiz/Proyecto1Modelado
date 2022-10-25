@@ -9,8 +9,8 @@ import java.io.Serializable;
 public class Tienda implements SujetoObservable, Servicio, Serializable {
 
     private Catalogo catalogo;// El catalogo que tiene la tienda
-    private Hashtable<Integer, Cliente> clientes;//Los clientes que la tienda tiene registrados
-    private Integer ultimoIDRegistrado;//El contador de clientes registrados
+    private Hashtable<Integer, Cliente> clientes;// Los clientes que la tienda tiene registrados
+    private Integer ultimoIDRegistrado;// El contador de clientes registrados
     private String paisOferta;
 
     /**
@@ -21,64 +21,67 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
     public Tienda() {
         this.catalogo = new Catalogo("");
         this.clientes = new Hashtable<Integer, Cliente>();
-        ultimoIDRegistrado=0;
+        ultimoIDRegistrado = 0;
     }
 
     /**
      * Metodo para obtener el numero de clientes registrados
+     * 
      * @return
      */
-    public Integer getUltimoIDRegistrado(){
+    public Integer getUltimoIDRegistrado() {
         return ultimoIDRegistrado;
     }
 
     /**
      * Metodo para aumentar el contador de clientes registrados
      */
-    public void aumentarUltimoIDRegistrado(){
+    public void aumentarUltimoIDRegistrado() {
         ultimoIDRegistrado++;
     }
 
     /**
      * Metodo para iniciar sesion
+     * 
      * @param cliente El cliente que quiere iniciar sesion
      * @return Idioma null
      */
     @Override
     public Idioma iniciarSesion(Cliente cliente) {
-        String nombreUsuario=cliente.getNombreUsuario();
-        Integer id=existeUsuario(nombreUsuario);
-        String contrasena=cliente.getContrasena();
-        if(id!=-1){
-            if(verificarContrasena(id, contrasena)){
-                Cliente usuario=clientes.get(id);
-                String pais= usuario.getPaisCliente();
+        String nombreUsuario = cliente.getNombreUsuario();
+        Integer id = existeUsuario(nombreUsuario);
+        String contrasena = cliente.getContrasena();
+        if (id != -1) {
+            if (verificarContrasena(id, contrasena)) {
+                Cliente usuario = clientes.get(id);
+                String pais = usuario.getPaisCliente();
                 return getIdioma(pais);
             }
         }
         return null;
-        
+
     }
 
     /**
      * Metodo para generar una oferta para un pais
      */
-    public void generarOferta(){
-        Random random=new Random();
-        int num=random.nextInt(4);
-        String paisOferta="";
-        if(num==0){
-            paisOferta="España";
-        }else if(num==1){
-            paisOferta="Estados Unidos";
-        }else if(num==2){
-            paisOferta="México";
+    public void generarOferta() {
+        Random random = new Random();
+        int num = random.nextInt(4);
+        String paisOferta = "";
+        if (num == 0) {
+            paisOferta = "España";
+        } else if (num == 1) {
+            paisOferta = "Estados Unidos";
+        } else if (num == 2) {
+            paisOferta = "México";
         }
-        this.paisOferta=paisOferta;
+        this.paisOferta = paisOferta;
     }
 
     /**
      * Metodo para registrar a un cliente en la tienda
+     * 
      * @param observador El nuevo cliente de la tienda
      */
     @Override
@@ -106,22 +109,23 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
     }
 
     /**
-     * Método para notificar a los clientes correspondientes que hay una oferta disponible
+     * Método para notificar a los clientes correspondientes que hay una oferta
+     * disponible
      */
     @Override
     public void notificar() {
         Set<Integer> llaves = clientes.keySet();
         generarOferta();
 
-        if(paisOferta!=""){
+        if (paisOferta != "") {
             for (Integer llave : llaves) {
-                if(clientes.get(llave).getPaisCliente().equals(paisOferta)){
+                if (clientes.get(llave).getPaisCliente().equals(paisOferta)) {
                     clientes.get(llave).actualizar();
-                }else{
+                } else {
                     clientes.get(llave).setDeptoOferta("");
                 }
             }
-        }else{
+        } else {
             for (Integer llave : llaves) {
                 clientes.get(llave).setDeptoOferta("");
             }
@@ -146,15 +150,17 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
     }
 
     /**
-     * Metodo para saber si existe un usuario en el registro de usuarios de la tienda
+     * Metodo para saber si existe un usuario en el registro de usuarios de la
+     * tienda
+     * 
      * @param nombreUsuario El nombre del usuario buscado
      * @return Integer El id del usuario buscado, -1 si no existe el usuario
      */
-    private Integer existeUsuario(String nombreUsuario){
+    private Integer existeUsuario(String nombreUsuario) {
         Set<Integer> llaves = clientes.keySet();
 
-        for(Integer llave: llaves){
-            if(clientes.get(llave).getNombreUsuario().equals(nombreUsuario)){
+        for (Integer llave : llaves) {
+            if (clientes.get(llave).getNombreUsuario().equals(nombreUsuario)) {
                 return clientes.get(llave).getIdCliente();
             }
         }
@@ -162,15 +168,35 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
     }
 
     /**
-     * Metodo para saber si la contraseña de un usuario es correcta
-     * @param idUsuario El id del usuario que se busca
-     * @param contrasena La contraseña del usuario que se busca
-     * @return boolean true si la contraseña coincide con la de usuario, false en otro caso
+     * Método para saber si el nombre de usuraio de alguien ya existe en el registro
+     * de los clientes.
+     * 
+     * @param nombreUsuario El nombre de usuario a verificar
+     * @return true si ya existe ese nombre de usuario, false en otro caso.
      */
-    private boolean verificarContrasena(Integer idUsuario, String contrasena){
-        Cliente cliente=clientes.get(idUsuario);
-        if(cliente!=null){
-            if(cliente.getContrasena().equals(contrasena)){
+    public boolean verificarNombreUsuario(String nombreUsuario) {
+        Set<Integer> llaves = clientes.keySet();
+
+        for (Integer llave : llaves) {
+            if (clientes.get(llave).getNombreUsuario().equals(nombreUsuario)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Metodo para saber si la contraseña de un usuario es correcta
+     * 
+     * @param idUsuario  El id del usuario que se busca
+     * @param contrasena La contraseña del usuario que se busca
+     * @return boolean true si la contraseña coincide con la de usuario, false en
+     *         otro caso
+     */
+    private boolean verificarContrasena(Integer idUsuario, String contrasena) {
+        Cliente cliente = clientes.get(idUsuario);
+        if (cliente != null) {
+            if (cliente.getContrasena().equals(contrasena)) {
                 return true;
             }
         }
@@ -179,14 +205,15 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
 
     /**
      * Metodo para verificar la cuenta de banco del usuario
+     * 
      * @param idUsuario El id del usuario
-     * @param cuenta El numero de cuenta de banco del usuario
+     * @param cuenta    El numero de cuenta de banco del usuario
      * @return boolean true si la cuenta de banco coincide, false en otro caso
      */
-    public boolean verificarCuentaDeBanco(Integer idUsuario, int cuenta){
-        Cliente cliente=clientes.get(idUsuario);
-        if(cliente!=null){
-            if(cliente.getnumCuentaBancariaCliente()==cuenta){
+    public boolean verificarCuentaDeBanco(Integer idUsuario, int cuenta) {
+        Cliente cliente = clientes.get(idUsuario);
+        if (cliente != null) {
+            if (cliente.getnumCuentaBancariaCliente() == cuenta) {
                 return true;
             }
         }
@@ -195,15 +222,16 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
 
     /**
      * Método para hacer el movimiento de compra en la cuenta del cliente
+     * 
      * @param cantidad
      * @param idUsuario
      * @return
      */
-    public boolean realizarCompra(double cantidad, Integer idUsuario){
-        Cliente cliente=clientes.get(idUsuario);
-        if(cliente.getCuentaBancaria().consultarSaldo()<cantidad){
+    public boolean realizarCompra(double cantidad, Integer idUsuario) {
+        Cliente cliente = clientes.get(idUsuario);
+        if (cliente.getCuentaBancaria().consultarSaldo() < cantidad) {
             return false;
-        }else{
+        } else {
             cliente.getCuentaBancaria().retirar(cantidad);
             return true;
         }
@@ -211,18 +239,21 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
 
     /**
      * Metodo para obtener a un cliente del registro de clientes
-     * @param nombre El nombre del usuario buscado 
+     * 
+     * @param nombre     El nombre del usuario buscado
      * @param contrasena La contraseña del usuario buscado
      * @return Cliente El cliente buscado
      */
-    private Cliente getCliente(String nombre, String contrasena){//////////////////////////////////////////////////////////////////////////////Revisar este metodo
+    private Cliente getCliente(String nombre, String contrasena) {////////////////////////////////////////////////////////////////////////////// Revisar
+                                                                  ////////////////////////////////////////////////////////////////////////////// este
+                                                                  ////////////////////////////////////////////////////////////////////////////// metodo
         Set<Integer> llaves = clientes.keySet();
 
-        for(Integer llave: llaves){
-            if(clientes.get(llave).getNombreUsuario().equals(nombre)){
-                int ID=clientes.get(llave).getIdCliente();
-                if(clientes.get(ID).getContrasena().equals(contrasena)){
-                    int id=clientes.get(llave).getIdCliente();
+        for (Integer llave : llaves) {
+            if (clientes.get(llave).getNombreUsuario().equals(nombre)) {
+                int ID = clientes.get(llave).getIdCliente();
+                if (clientes.get(ID).getContrasena().equals(contrasena)) {
+                    int id = clientes.get(llave).getIdCliente();
                     return clientes.get(id);
                 }
             }
@@ -232,33 +263,35 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
 
     /**
      * Metodo para obtener el ID de un usuario buscado
-     * @param nombre El nobre de usuario
+     * 
+     * @param nombre     El nobre de usuario
      * @param contrasena La contraseña del usuario
      * @return Integer el ID del usuario, -1 si no existe el usuario
      */
-    public Integer getIDCliente(String nombre, String contrasena){
-        Cliente usuario=getCliente(nombre, contrasena);
-        if(usuario!=null){
+    public Integer getIDCliente(String nombre, String contrasena) {
+        Cliente usuario = getCliente(nombre, contrasena);
+        if (usuario != null) {
             return usuario.getIdCliente();
-        }else{
+        } else {
             return -1;
         }
-        
+
     }
 
     /**
      * Metodo para obtener un idioma de acuerdo a un pais
+     * 
      * @param pais El pais de origen
      * @return Idioma El idioma correspondiente al pais
      */
-    private Idioma getIdioma(String pais){
-        Idioma idioma=null;
-        if(pais.equals("Estados Unidos")){
-            idioma=new English();
-        }else if(pais.equals("España")){
-            idioma=new EspanolEspana();
-        }else{
-            idioma=new EspanolLatino();
+    private Idioma getIdioma(String pais) {
+        Idioma idioma = null;
+        if (pais.equals("Estados Unidos")) {
+            idioma = new English();
+        } else if (pais.equals("España")) {
+            idioma = new EspanolEspana();
+        } else {
+            idioma = new EspanolLatino();
         }
         return idioma;
     }
@@ -271,7 +304,6 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
     public void setCatalogo(Catalogo catalogo) {
         this.catalogo = catalogo;
     }
-
 
     /**
      * Método para obtener los clientes de la tienda
@@ -293,22 +325,25 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
 
     /**
      * Metodo para obtener un producto del catalogo
+     * 
      * @param codigo El codigo de barras del producto
      * @return El producto que se busca, null si el producto no esta en el catalogo
      */
-    public Producto getProducto(String codigo){
-        Producto producto=catalogo.buscarProducto(codigo);
+    public Producto getProducto(String codigo) {
+        Producto producto = catalogo.buscarProducto(codigo);
         return producto;
     }
 
     /**
      * Metodo para obtener el departamento que tiene oferta
-     * @param idUsuario El id del usuario del que queremos saber su oferta (si tiene)
+     * 
+     * @param idUsuario El id del usuario del que queremos saber su oferta (si
+     *                  tiene)
      * @return String El departamento que tiene oferta
      */
-    public String getDeptoOferta(int idUsuario){
-        Cliente cliente=clientes.get(idUsuario);
-        if(cliente!=null){
+    public String getDeptoOferta(int idUsuario) {
+        Cliente cliente = clientes.get(idUsuario);
+        if (cliente != null) {
             return cliente.getDeptoOferta();
         }
         return null;
@@ -316,9 +351,10 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
 
     /**
      * M+etodo para obtener el país que obtuvo oferta de la tienda
+     * 
      * @return String El país que tiene oferta disponible
      */
-    public String getPaisOfertaTienda(){
+    public String getPaisOfertaTienda() {
         return paisOferta;
     }
 
