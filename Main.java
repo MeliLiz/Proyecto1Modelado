@@ -39,7 +39,8 @@ public class Main {
                         System.out.println("Opcion no valida");
                     }
                 } catch (InputMismatchException e) {
-                    e.printStackTrace();
+                    System.out.println("No ingresaste un número");
+                    scanner.next();
                 }
             }
             switch (opcion) {
@@ -58,6 +59,7 @@ public class Main {
                             break;
                         } catch (InputMismatchException e) {
                             System.out.println("Al parecer no ingreso un numero");
+                            scanner.next();
                         }
                     }
 
@@ -71,6 +73,7 @@ public class Main {
                             break;
                         } catch (InputMismatchException e) {
                             System.out.println("Al parecer no ingreso un numero");
+                            scanner.next();
                         }
                     }
 
