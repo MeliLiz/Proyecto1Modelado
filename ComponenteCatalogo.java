@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.util.Iterator;
 /**
  * Clase abstracta que simula el componente de un catalogo
  */
-public abstract class ComponenteCatalogo {
+public abstract class ComponenteCatalogo implements Serializable{
 
     /**
      * Metodo para agregar un componente

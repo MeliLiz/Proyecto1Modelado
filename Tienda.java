@@ -212,7 +212,7 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
         Idioma idioma=null;
         if(pais.equals("Estados Unidos")){
             idioma=new English();
-        }else if(idioma.equals("España")){
+        }else if(pais.equals("España")){
             idioma=new EspanolEspana();
         }else{
             idioma=new EspanolLatino();

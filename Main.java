@@ -2,6 +2,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.ObjectInputStream;
 import java.io.FileInputStream;
+import java.io.ObjectOutputStream;
+import java.io.NotSerializableException;
+import java.io.IOException;
+import java.io.FileOutputStream;
 
 public class Main {
 
@@ -90,6 +94,24 @@ public class Main {
                     tiendaProxy.iniciarSesion(client);
                     break;
                 case 3:
+                    ObjectOutputStream escritor=null;
+                    try{
+                        escritor=new ObjectOutputStream(new FileOutputStream("archivo.obj"));
+                        escritor.writeObject(tienda);
+                    }catch(NotSerializableException e){
+                        System.out.println("Error en la grabación: "+e+". Objeto no serializable");
+                    }catch(IOException e){
+                        System.out.println("Error en la grabación: "+e);
+                    }finally{
+                        if(escritor!=null){
+                            System.out.println("Cerrando el archivo");
+                            try{
+                                escritor.close();
+                            }catch(IOException e){}
+                        }else{
+                            System.out.println("No se abrió ningún archivo");
+                        }
+                    }
                     break principal;
 
                 default:

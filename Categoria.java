@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -5,7 +6,7 @@ import java.util.Iterator;
  * Clase para simular las categorias de un catalogo
  * @see Categoria
  */
-public class Categoria extends ComponenteCatalogo{
+public class Categoria extends ComponenteCatalogo implements Serializable{
 
     private ArrayList<ComponenteCatalogo> subcategorias;//los subcategorias de la categoria
     private String nombreCategoria;
