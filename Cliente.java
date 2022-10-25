@@ -20,12 +20,13 @@ public class Cliente implements Observador, Serializable {
 
     /**
      * Constructor para clientes provisionales
+     * 
      * @param nombreUsuario
      * @param contrasena
      */
-    public Cliente(String nombreUsuario, String contrasena){
-        this.nombreUsuario=nombreUsuario;
-        this.contrasena=contrasena;
+    public Cliente(String nombreUsuario, String contrasena) {
+        this.nombreUsuario = nombreUsuario;
+        this.contrasena = contrasena;
     }
 
     /**
@@ -41,7 +42,7 @@ public class Cliente implements Observador, Serializable {
      * @param ID             El ID del cliente
      */
     public Cliente(String nombreUsuario, String contrasena, String nombreCliente, int telefono, String direccion,
-        int cuentaBancaria, String pais, int ID, Tienda tienda) {
+            int cuentaBancaria, String pais, int ID, Tienda tienda) {
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
         this.nombreCliente = nombreCliente;
@@ -200,7 +201,6 @@ public class Cliente implements Observador, Serializable {
         this.ID = ID;
     }
 
-
     /**
      * Método que regresa el total de compra del cliente
      * 
@@ -261,16 +261,18 @@ public class Cliente implements Observador, Serializable {
      */
     @Override
     public void actualizar() {
-        if(pais.equals("México")){
-            deptoOferta="Alimenticios";
-        }else if(pais.equals("España")){
-            deptoOferta="Electrodomésticos";
-        }else if(pais.equals("Estados Unidos")){
-            deptoOferta="Electrónica";
+        if (pais.equals("México")) {
+            deptoOferta = "Alimenticios";
+        } else if (pais.equals("España")) {
+            deptoOferta = "Electrodomésticos";
+        } else if (pais.equals("Estados Unidos")) {
+            deptoOferta = "Electrónica";
         }
     }
 
-    public String toString(){
-        return nombreCliente+" "+pais;
-    }
-}
+    @Override
+    public String toString() {
+        return nombreCliente + " " + pais;
+    }  
+}  
+               
