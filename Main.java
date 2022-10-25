@@ -14,17 +14,18 @@ public class Main {
 
     private static Tienda tienda = new Tienda();
     private static TiendaProxy tiendaProxy = null;
-    private static Scanner scanner = new Scanner(System.in);//scanner para números
-    private static Scanner scanner2 = new Scanner(System.in);//scanner para líneas
+    private static Scanner scanner = new Scanner(System.in);// scanner para números
+    private static Scanner scanner2 = new Scanner(System.in);// scanner para líneas
 
     /**
-     * Metodo para iniciar la ejecucion del menu para registrarse, iniciar sesión o salir
+     * Metodo para iniciar la ejecucion del menu para registrarse, iniciar sesión o
+     * salir
      */
     public static void inicio() {
         tienda.notificar();
         System.out.println(tienda.getPaisOfertaTienda());
         principal: do {
-            tiendaProxy = new TiendaProxy(tienda);//creamos una nueva tienda proxy
+            tiendaProxy = new TiendaProxy(tienda);// creamos una nueva tienda proxy
             int opcion = 0;
             while (true) {
                 System.out.println("Ingresa una opcion");
@@ -45,9 +46,19 @@ public class Main {
                 }
             }
             switch (opcion) {
-                case 1://registrarse
-                    System.out.print("Ingrese su nombre de usuario: ");
-                    String nombreUsuario = scanner2.nextLine();
+                case 1:// registrarse
+                    String nombreUsuario = null;
+                    while (true) {
+                        System.out.print("Ingrese su nombre de usuario: ");
+                        nombreUsuario = scanner2.nextLine();
+
+                        if (tienda.verificarNombreUsuario(nombreUsuario)) {
+                            System.out.println("El nombre de usuario ya existe, ingrese otro.");
+                        } else {
+                            break;
+                        }
+
+                    }
                     System.out.print("\nIngrese su nombre completo: ");
                     String nombreCliente = scanner2.nextLine();
                     System.out.print("\nIngrese su contraseña: ");
@@ -82,10 +93,10 @@ public class Main {
                     String pais = scanner2.nextLine();
                     Cliente cliente = new Cliente(nombreUsuario, contrasena, nombreCliente, telefono, direccion,
                             numCuenta, pais, tienda.getUltimoIDRegistrado() + 1, tienda);
-                    //System.out.println(tienda.getClientes().size());
+                    // System.out.println(tienda.getClientes().size());
                     System.out.println("\nInicie sesión por favor");
                     break;
-                case 2://iniciar sesión
+                case 2:// iniciar sesión
                     System.out.print("Ingrese su nombre de usuario: ");
                     String usuario = scanner2.nextLine();
 
@@ -95,23 +106,24 @@ public class Main {
                     Cliente client = new Cliente(usuario, key);
                     tiendaProxy.iniciarSesion(client);
                     break;
-                case 3://Salir
-                    //Guardamos el objeto de la tienda en el archivo obj
-                    ObjectOutputStream escritor=null;
-                    try{
-                        escritor=new ObjectOutputStream(new FileOutputStream("archivo.obj"));
+                case 3:// Salir
+                       // Guardamos el objeto de la tienda en el archivo obj
+                    ObjectOutputStream escritor = null;
+                    try {
+                        escritor = new ObjectOutputStream(new FileOutputStream("archivo.obj"));
                         escritor.writeObject(tienda);
-                    }catch(NotSerializableException e){
-                        System.out.println("Error en la grabación: "+e+". Objeto no serializable");
-                    }catch(IOException e){
-                        System.out.println("Error en la grabación: "+e);
-                    }finally{
-                        if(escritor!=null){
+                    } catch (NotSerializableException e) {
+                        System.out.println("Error en la grabación: " + e + ". Objeto no serializable");
+                    } catch (IOException e) {
+                        System.out.println("Error en la grabación: " + e);
+                    } finally {
+                        if (escritor != null) {
                             System.out.println("Cerrando el programa");
-                            try{
+                            try {
                                 escritor.close();
-                            }catch(IOException e){}
-                        }else{
+                            } catch (IOException e) {
+                            }
+                        } else {
                             System.out.println("No se abrió ningún archivo");
                         }
                     }
@@ -126,22 +138,23 @@ public class Main {
 
     /**
      * Método principal
+     * 
      * @param args Los argumentos
      */
     public static void main(String[] args) {
-        //Leemos el archivo obj (si existe)
+        // Leemos el archivo obj (si existe)
         try {
             ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("archivo.obj"));
             tienda = (Tienda) entrada.readObject();
             entrada.close();
         } catch (Exception e) {// Si el archivo no se pudo leer
             System.out.println("No se pudo deserializar");
-            //Si el objeto no existe, creamos un cliente de la tienda
+            // Si el objeto no existe, creamos un cliente de la tienda
             Cliente cliente1 = new Cliente("Elec", "elec17", "Elec Kincaid", 96378415, "Rosewood street, Boston",
                     123456789, "Estados Unidos", 1, tienda);
 
         }
-        //System.out.println(tienda.getClientes().size());
+        // System.out.println(tienda.getClientes().size());
 
         inicio();
     }
