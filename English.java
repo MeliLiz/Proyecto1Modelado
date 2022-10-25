@@ -190,4 +190,12 @@ public class English implements Idioma {
     public void saliendo() {
         System.out.println("Logging out...");
     }
+
+    /**
+     * Método para indicar que no hay saldo suficiente en la cuenta del usuario
+     */
+    @Override
+    public void saldoInsuficiente() {
+        System.out.println("You don't have enough money in your bank account. Your purchase will be cancelled.");
+    }
 }

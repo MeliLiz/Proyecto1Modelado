@@ -187,9 +187,15 @@ public class TiendaProxy implements Serializable, Servicio {
                 //La tienda real verifica que el numero de cuenta bancaria sea correcto
                 boolean verificado=tiendaReal.verificarCuentaDeBanco(idUsuario, numCuenta);
                 if(verificado){//si la cuenta bancaria es correcta
-                    idioma.completarCompra();
-                    mostrarTicket();
-                    idioma.darFechaDeEntrega();
+                    //la tienda real verifica que haya dinero suficiente en la cuenta de banco del usuario
+                    verificado=tiendaReal.realizarCompra(suma, idUsuario);
+                    if(verificado){//Si hay dinero suficiente, se completa la compra
+                        idioma.completarCompra();
+                        mostrarTicket();
+                        idioma.darFechaDeEntrega();
+                    }else{
+                        idioma.saldoInsuficiente();
+                    }
                     break;
                 }else{//Si el numero de cuenta bancaria no es correcto
                     idioma.errorCuentaBancaria();

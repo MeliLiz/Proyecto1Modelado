@@ -190,4 +190,12 @@ public class EspanolEspana implements Idioma {
     public void saliendo() {
         System.out.println("Saliendo de sesión...");
     }
+
+    /**
+     * Método para indicar que no hay saldo suficiente para realizar la compra
+     */
+    @Override
+    public void saldoInsuficiente() {
+        System.out.println("No tenés saldo suficienta para pagar. Su compra será cancelaada");
+    }
 }

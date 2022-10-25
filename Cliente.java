@@ -1,5 +1,4 @@
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * Clase para el cliente
@@ -11,12 +10,13 @@ public class Cliente implements Observador, Serializable {
     private String nombreCliente;
     private int telefono;
     private String direccion;
-    private int cuentaBancaria;
+    private int numCuentaBancaria;
     private String pais;
     private int ID;
     private double totalCompra;
     private Tienda tienda;
     private String deptoOferta;
+    private Cuenta cuentaBancaria;
 
     /**
      * Constructor para clientes provisionales
@@ -37,22 +37,23 @@ public class Cliente implements Observador, Serializable {
      * @param nombreCliente  El nombre del coliente
      * @param telefono       El telfono del cliente
      * @param direccion      La dirección del cliente
-     * @param cuentaBancaria La cuenta bancaria del cliente
+     * @param numCuentaBancaria La cuenta bancaria del cliente
      * @param pais           El país donde se encuentra el cliente
      * @param ID             El ID del cliente
      */
-    public Cliente(String nombreUsuario, String contrasena, String nombreCliente, int telefono, String direccion, int cuentaBancaria, String pais, int ID, Tienda tienda) {
+    public Cliente(String nombreUsuario, String contrasena, String nombreCliente, int telefono, String direccion, int numCuentaBancaria, String pais, int ID, Tienda tienda) {
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
         this.nombreCliente = nombreCliente;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.cuentaBancaria = cuentaBancaria;
+        this.numCuentaBancaria = numCuentaBancaria;
         this.pais = pais;
         this.ID = ID;
         this.totalCompra = 0;
         this.tienda = tienda;
         this.deptoOferta = "";
+        cuentaBancaria=new Cuenta();
         tienda.registrar(this);//Al crear un cliente, la tienda lo registra automaticamente como un observador
     }
 
@@ -147,21 +148,29 @@ public class Cliente implements Observador, Serializable {
     }
 
     /**
+     * Método para obtener la cuenta bancaria del cliente
+     * @return
+     */
+    public Cuenta getCuentaBancaria(){
+        return cuentaBancaria;
+    }
+
+    /**
      * Método que regresa la cuenta bancaria del cliente
      * 
      * @return La cuenta bancaria del cliente
      */
-    public int getCuentaBancariaCliente() {
-        return this.cuentaBancaria;
+    public int getnumCuentaBancariaCliente() {
+        return this.numCuentaBancaria;
     }
 
     /**
      * Método para cambiar la cuenta bancaria
      * 
-     * @param cuentaBancaria La nueva cuenta bancaria del cliente
+     * @param numCuentaBancaria La nueva cuenta bancaria del cliente
      */
-    public void setCuentaBancariaCliente(int cuentaBancaria) {
-        this.cuentaBancaria = cuentaBancaria;
+    public void setnumCuentaBancariaCliente(int numCuentaBancaria) {
+        this.numCuentaBancaria = numCuentaBancaria;
     }
 
     /**

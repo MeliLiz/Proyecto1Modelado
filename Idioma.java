@@ -103,4 +103,9 @@ public interface Idioma {
      * Método para indicar que se está cerrando la sesión
      */
     public void saliendo();
+
+    /**
+     * Método para indicar que la cuenta del cliente no tiene saldo suficiente para realizar la compra
+     */
+    public void saldoInsuficiente();
 }

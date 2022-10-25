@@ -52,7 +52,6 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
             if(verificarContrasena(id, contrasena)){
                 Cliente usuario=clientes.get(id);
                 String pais= usuario.getPaisCliente();
-                notificar();
                 return getIdioma(pais);
             }
         }
@@ -182,11 +181,27 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
     public boolean verificarCuentaDeBanco(Integer idUsuario, int cuenta){
         Cliente cliente=clientes.get(idUsuario);
         if(cliente!=null){
-            if(cliente.getCuentaBancariaCliente()==cuenta){
+            if(cliente.getnumCuentaBancariaCliente()==cuenta){
                 return true;
             }
         }
         return false;
+    }
+
+    /**
+     * Método para hacer el movimiento de compra en la cuenta del cliente
+     * @param cantidad
+     * @param idUsuario
+     * @return
+     */
+    public boolean realizarCompra(double cantidad, Integer idUsuario){
+        Cliente cliente=clientes.get(idUsuario);
+        if(cliente.getCuentaBancaria().consultarSaldo()<cantidad){
+            return false;
+        }else{
+            cliente.getCuentaBancaria().retirar(cantidad);
+            return true;
+        }
     }
 
     /**

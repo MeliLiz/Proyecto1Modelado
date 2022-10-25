@@ -187,4 +187,12 @@ public class EspanolLatino implements Idioma {
     public void saliendo() {
         System.out.println("Cerrando sesión...");
     }
+
+    /**
+     * Método para indicar que no hay saldo suficiente en la cuenta para realizar la compra
+     */
+    @Override
+    public void saldoInsuficiente() {
+        System.out.println("No hay saldo suficiente en su cuenta. Su compra se cancelará");
+    }
 }

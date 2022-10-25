@@ -21,6 +21,7 @@ public class Main {
      * Metodo para iniciar la ejecucion del menu para registrarse, iniciar sesión o salir
      */
     public static void inicio() {
+        tienda.notificar();
         principal: do {
             tiendaProxy = new TiendaProxy(tienda);//creamos una nueva tienda proxy
             int opcion = 0;
@@ -102,7 +103,7 @@ public class Main {
                         System.out.println("Error en la grabación: "+e);
                     }finally{
                         if(escritor!=null){
-                            System.out.println("Cerrando el archivo");
+                            System.out.println("Cerrando el programa");
                             try{
                                 escritor.close();
                             }catch(IOException e){}
