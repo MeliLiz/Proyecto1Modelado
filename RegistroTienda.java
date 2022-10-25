@@ -63,7 +63,6 @@ public class RegistroTienda {
     public Cliente leerCLienteDelRegistro(Cliente cliente) {
         Cliente clienteBuscado = null;
         Hashtable<Integer, Cliente> clientesEnRegistro = null;
-        boolean repetidor = true;
 
         try {
 
@@ -83,11 +82,11 @@ public class RegistroTienda {
     }
 
     public static void main(String[] args) {
-        Cliente cliente1 = new Cliente("eyeRaven", null, null, 0, null, 0, null, 12323, null);
-        Cliente cliente2 = new Cliente("Clara", null, null, 0, null, 0, null, 22424, null);
-        Cliente cliente3 = new Cliente("Damian", null, null, 0, null, 0, null, 1234344, null);
-
         Tienda tienda = new Tienda();
+        Cliente cliente1 = new Cliente("eyeRaven", null, null, 0, null, 0, null, 12323, tienda);
+        Cliente cliente2 = new Cliente("Clara", null, null, 0, null, 0, null, 22424, tienda);
+        Cliente cliente3 = new Cliente("Damian", null, null, 0, null, 0, null, 1234344, tienda);
+
         tienda.registrar(cliente1);
         tienda.registrar(cliente2);
         tienda.registrar(cliente3);
@@ -96,9 +95,9 @@ public class RegistroTienda {
 
         registro.agregarClientesAlRegistro();
 
-        Cliente encontrado = registro.leerCLienteDelRegistro(cliente3);
+        // Cliente encontrado = registro.leerCLienteDelRegistro(cliente3);
 
-        System.out.println(encontrado.getNombreUsuario());
+        // System.out.println(encontrado.getNombreUsuario());
 
     }
 }
