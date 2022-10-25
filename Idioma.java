@@ -94,5 +94,13 @@ public interface Idioma {
      */
     public void productoAgregadoAlCarrito(String nombreProducto);
 
+    /**
+     * Metodo para mostrar un menu con opciones de finalizar compra o salir
+     */
     public void menuFinalizarCompra();
+
+    /**
+     * Método para indicar que se está cerrando la sesión
+     */
+    public void saliendo();
 }

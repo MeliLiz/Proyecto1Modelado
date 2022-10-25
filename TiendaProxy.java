@@ -25,15 +25,18 @@ public class TiendaProxy implements Serializable, Servicio {
         carrito=new ArrayList<Producto>();;
     }
 
-
+    /**
+     * Método para iniciar sesión
+     * @param cliente El cliente que quiere iniciar sesión
+     */
     @Override
     public Idioma iniciarSesion(Cliente cliente) {
-        Idioma idiom=tiendaReal.iniciarSesion(cliente);
+        Idioma idiom=tiendaReal.iniciarSesion(cliente);//La tienda real inicia sesion y regresa el idioma correspondiente del cliente dependiendo de su país de orígen. Es null si no existe el cliente
         if(idiom!=null){
-            this.idioma=idiom;
-            Integer id=tiendaReal.getIDCliente(cliente.getNombreUsuario(), cliente.getContrasena());
-            idUsuario=id;
-            deptoOferta=tiendaReal.getDeptoOferta(idUsuario);
+            this.idioma=idiom;//Asignamos el idioma de la tienda virtual dependiendo del idioma del cliente
+            Integer id=tiendaReal.getIDCliente(cliente.getNombreUsuario(), cliente.getContrasena());//Obtenemos el id del cliente
+            idUsuario=id;//la tienda virtual guarda el id del cliente
+            deptoOferta=tiendaReal.getDeptoOferta(idUsuario);//se obtiene la oferta del usuario (si es que tiene una oferta disponible)
             idioma.saludar();
             if(deptoOferta!=""){
                 idioma.anunciarOferta();
@@ -45,11 +48,14 @@ public class TiendaProxy implements Serializable, Servicio {
         return null;
     }
 
+    /**
+     * Método para mostrar el menú de opciones para mostrar el catalogo, comprar o salir
+     */
     public void menu(){
-        idioma.mostrarMenuOpciones();
-        
+
         int respuesta=0;
         while(true){
+            idioma.mostrarMenuOpciones();
             try {
                 respuesta=scanner.nextInt();
                 if(respuesta<4&&respuesta>0){
@@ -83,9 +89,9 @@ public class TiendaProxy implements Serializable, Servicio {
      */
     public void comenzarCompra(){
         tiendaReal.mostrarCatalogo();
-        idioma.menuCarrito();
         int respuestaUsuario=0;
         while(true){
+            idioma.menuCarrito();//Se dan opciones de añadir al carrito o salir
             try {
                 respuestaUsuario=scanner.nextInt();
                 if(respuestaUsuario>0&&respuestaUsuario<3){
@@ -119,6 +125,9 @@ public class TiendaProxy implements Serializable, Servicio {
         }
     }
 
+    /**
+     * Metodo paramostrar opciones de finalizar compra o salir
+     */
     public void finalizarCompra(){
         idioma.menuFinalizarCompra();
         int respuesta=0;
@@ -141,17 +150,23 @@ public class TiendaProxy implements Serializable, Servicio {
         }
     }
 
+    /**
+     * Método para mostrar el catálogo de la tienda
+     */
     @Override
     public void mostrarCatalogo() {
         tiendaReal.mostrarCatalogo();
         
     }
 
-    @Override
+    /**
+     * Método para mostrar la cantidad a pagar y hacer una compra segura
+     */
     public void realizarCompra() {
         System.out.println("ID: "+idUsuario);
-        String deptoOferta=tiendaReal.getDeptoOferta(idUsuario);
+        String deptoOferta=tiendaReal.getDeptoOferta(idUsuario);//Obtenemos la oferta (si es que tiene) del usuario
         double suma=0;
+        //sumamos el precio de los productos (considerando los descuentos en los productos correspondientes)
         if(carrito.size()>0){
             for (Producto producto : carrito) {
                 if(producto.getDepartamento().equals(deptoOferta)){
@@ -161,7 +176,7 @@ public class TiendaProxy implements Serializable, Servicio {
                 }
             }
         }
-        idioma.porPagar(suma);
+        idioma.porPagar(suma);//mostramos la cantidad por pagar
         idioma.compraSegura();
         Scanner scanner=new Scanner(System.in);
         int numCuenta;
@@ -169,13 +184,14 @@ public class TiendaProxy implements Serializable, Servicio {
             idioma.pedirCuentaBancaria();
             try {
                 numCuenta=scanner.nextInt();
+                //La tienda real verifica que el numero de cuenta bancaria sea correcto
                 boolean verificado=tiendaReal.verificarCuentaDeBanco(idUsuario, numCuenta);
-                if(verificado){
+                if(verificado){//si la cuenta bancaria es correcta
                     idioma.completarCompra();
                     mostrarTicket();
                     idioma.darFechaDeEntrega();
                     break;
-                }else{
+                }else{//Si el numero de cuenta bancaria no es correcto
                     idioma.errorCuentaBancaria();
                     cancelarCompra();
                     break;
@@ -187,9 +203,11 @@ public class TiendaProxy implements Serializable, Servicio {
         salir();
     }
 
-    @Override
+    /**
+     * Metodo para indicar que se cierra la sesión del usuario
+     */
     public void salir() {
-        tiendaReal.salir();
+        idioma.saliendo();
     }
 
     /**
@@ -205,12 +223,18 @@ public class TiendaProxy implements Serializable, Servicio {
         }
     }
 
+    /**
+     * Metodo para cancelar una compra/ salir de sesión
+     */
     public void cancelarCompra(){
-
+        idioma.saliendo();
     }
 
+    /**
+     * Método para mostrar el ticket de compra
+     */
     public void mostrarTicket(){
-        String deptoOferta=tiendaReal.getDeptoOferta(idUsuario);
+        String deptoOferta=tiendaReal.getDeptoOferta(idUsuario);//Obtenemos la oferta del cliente (si tiene una)
         if(deptoOferta!=""){
             idioma.ofertaAplicada(deptoOferta);
         }

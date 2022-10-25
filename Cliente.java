@@ -41,8 +41,7 @@ public class Cliente implements Observador, Serializable {
      * @param pais           El país donde se encuentra el cliente
      * @param ID             El ID del cliente
      */
-    public Cliente(String nombreUsuario, String contrasena, String nombreCliente, int telefono, String direccion,
-            int cuentaBancaria, String pais, int ID, Tienda tienda) {
+    public Cliente(String nombreUsuario, String contrasena, String nombreCliente, int telefono, String direccion, int cuentaBancaria, String pais, int ID, Tienda tienda) {
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
         this.nombreCliente = nombreCliente;
@@ -54,7 +53,7 @@ public class Cliente implements Observador, Serializable {
         this.totalCompra = 0;
         this.tienda = tienda;
         this.deptoOferta = "";
-        tienda.registrar(this);
+        tienda.registrar(this);//Al crear un cliente, la tienda lo registra automaticamente como un observador
     }
 
     /**
@@ -261,7 +260,7 @@ public class Cliente implements Observador, Serializable {
      */
     @Override
     public void actualizar() {
-        if (pais.equals("México")) {
+        if (pais.equals("México") || pais.equals("Mexico")) {
             deptoOferta = "Alimenticios";
         } else if (pais.equals("España")) {
             deptoOferta = "Electrodomésticos";
@@ -270,6 +269,9 @@ public class Cliente implements Observador, Serializable {
         }
     }
 
+    /**
+     * Metodo para obtener una representacion en cadena del cliente
+     */
     @Override
     public String toString() {
         return nombreCliente + " " + pais;

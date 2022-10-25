@@ -16,14 +16,4 @@ public interface Servicio {
      */
     public void mostrarCatalogo();
 
-
-    /**
-     * Método para realizar una compra
-     */
-    public void realizarCompra();
-
-    /**
-     * Metodo para salir del sistema
-     */
-    public void salir();
 }

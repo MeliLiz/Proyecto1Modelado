@@ -8,9 +8,9 @@ import java.io.Serializable;
  */
 public class Tienda implements SujetoObservable, Servicio, Serializable {
 
-    private Catalogo catalogo;
-    private Hashtable<Integer, Cliente> clientes;
-    private Integer ultimoIDRegistrado;
+    private Catalogo catalogo;// El catalogo que tiene la tienda
+    private Hashtable<Integer, Cliente> clientes;//Los clientes que la tienda tiene registrados
+    private Integer ultimoIDRegistrado;//El contador de clientes registrados
 
     /**
      * Constructor con un parametro
@@ -23,14 +23,26 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
         ultimoIDRegistrado=0;
     }
 
+    /**
+     * Metodo para obtener el numero de clientes registrados
+     * @return
+     */
     public Integer getUltimoIDRegistrado(){
         return ultimoIDRegistrado;
     }
 
+    /**
+     * Metodo para aumentar el contador de clientes registrados
+     */
     public void aumentarUltimoIDRegistrado(){
         ultimoIDRegistrado++;
     }
 
+    /**
+     * Metodo para iniciar sesion
+     * @param cliente El cliente que quiere iniciar sesion
+     * @return Idioma null
+     */
     @Override
     public Idioma iniciarSesion(Cliente cliente) {
         String nombreUsuario=cliente.getNombreUsuario();
@@ -80,6 +92,9 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
 
     }
 
+    /**
+     * Metodo para remover a un cliente de los clientes registrados
+     */
     @Override
     public void remover(Cliente observador) {
         if (observador == null) {
@@ -90,6 +105,9 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
 
     }
 
+    /**
+     * Método para notificar a los clientes correspondientes que hay una oferta disponible
+     */
     @Override
     public void notificar() {
         Set<Integer> llaves = clientes.keySet();
@@ -99,11 +117,16 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
             for (Integer llave : llaves) {
                 if(clientes.get(llave).getPaisCliente().equals(paisOferta)){
                     clientes.get(llave).actualizar();
+                }else{
+                    clientes.get(llave).setDeptoOferta("");
                 }
             }
         }
     }
 
+    /**
+     * Metodo para mostrar el catálogo de la tienda
+     */
     @Override
     public void mostrarCatalogo() {
         catalogo.imprimirCatalogo();
@@ -218,18 +241,6 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
             idioma=new EspanolLatino();
         }
         return idioma;
-    }
-
-    @Override
-    public void salir() {
-        // Escribir archivo
-        
-    }
-
-    @Override
-    public void realizarCompra() {
-        
-        
     }
 
     /**
