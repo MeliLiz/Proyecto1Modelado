@@ -22,6 +22,7 @@ public class Main {
      */
     public static void inicio() {
         tienda.notificar();
+        System.out.println(tienda.getPaisOfertaTienda());
         principal: do {
             tiendaProxy = new TiendaProxy(tienda);//creamos una nueva tienda proxy
             int opcion = 0;

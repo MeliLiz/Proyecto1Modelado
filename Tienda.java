@@ -11,6 +11,7 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
     private Catalogo catalogo;// El catalogo que tiene la tienda
     private Hashtable<Integer, Cliente> clientes;//Los clientes que la tienda tiene registrados
     private Integer ultimoIDRegistrado;//El contador de clientes registrados
+    private String paisOferta;
 
     /**
      * Constructor con un parametro
@@ -62,7 +63,7 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
     /**
      * Metodo para generar una oferta para un pais
      */
-    public String generarOferta(){
+    public void generarOferta(){
         Random random=new Random();
         int num=random.nextInt(4);
         String paisOferta="";
@@ -73,7 +74,7 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
         }else if(num==2){
             paisOferta="México";
         }
-        return paisOferta;
+        this.paisOferta=paisOferta;
     }
 
     /**
@@ -110,7 +111,7 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
     @Override
     public void notificar() {
         Set<Integer> llaves = clientes.keySet();
-        String paisOferta=generarOferta();
+        generarOferta();
 
         if(paisOferta!=""){
             for (Integer llave : llaves) {
@@ -119,6 +120,10 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
                 }else{
                     clientes.get(llave).setDeptoOferta("");
                 }
+            }
+        }else{
+            for (Integer llave : llaves) {
+                clientes.get(llave).setDeptoOferta("");
             }
         }
     }
@@ -307,6 +312,14 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
             return cliente.getDeptoOferta();
         }
         return null;
+    }
+
+    /**
+     * M+etodo para obtener el país que obtuvo oferta de la tienda
+     * @return String El país que tiene oferta disponible
+     */
+    public String getPaisOfertaTienda(){
+        return paisOferta;
     }
 
 }

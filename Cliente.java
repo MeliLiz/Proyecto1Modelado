@@ -55,6 +55,9 @@ public class Cliente implements Observador, Serializable {
         this.deptoOferta = "";
         cuentaBancaria=new Cuenta();
         tienda.registrar(this);//Al crear un cliente, la tienda lo registra automaticamente como un observador
+        if(pais.equals(tienda.getPaisOfertaTienda())){
+            this.actualizar();
+        }
     }
 
     /**
