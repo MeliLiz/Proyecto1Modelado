@@ -1,6 +1,5 @@
 import java.util.Random;
 
-
 /**
  * Clase para el idioma en Ingles
  */
@@ -11,7 +10,7 @@ public class English implements Idioma {
     @Override
     public void saludar() {
         System.out.println("\nWelcome to our virtual store");
-        System.out.println("Tha language of the store now is English");
+        System.out.println("The language of the store now is English");
     }
 
     /**
@@ -70,13 +69,13 @@ public class English implements Idioma {
     @Override
     public void compraSegura() {
         System.out.println("\n**Secure purchase**");
-        
+
     }
 
     @Override
     public void porPagar(double porPagar) {
-        System.out.println("You have to pay: $"+porPagar);
-        
+        System.out.println("You have to pay: $" + porPagar);
+
     }
 
     @Override
@@ -88,30 +87,30 @@ public class English implements Idioma {
     @Override
     public void errorCodigoProducto() {
         System.out.println("\nThe product doesn't exist");
-        
+
     }
 
     @Override
     public void errorInput() {
         System.out.println("\nYou didn't enter a valid number");
-        
+
     }
 
     @Override
     public void ofertaAplicada(String deptoOferta) {
-        System.out.println("\nYou got 30% off on "+deptoOferta);
+        System.out.println("\nYou got 30% off on " + deptoOferta);
     }
 
     @Override
     public void subtotal(double subtotal) {
-        System.out.println("\nSubtotal: $"+subtotal);
-        
+        System.out.println("\nSubtotal: $" + subtotal);
+
     }
 
     @Override
     public void total(double total) {
-        System.out.println("Total: $"+total);
-        
+        System.out.println("Total: $" + total);
+
     }
 
     @Override
@@ -123,7 +122,7 @@ public class English implements Idioma {
 
     @Override
     public void productoAgregadoAlCarrito(String nommbreProducto) {
-        System.out.println("\n"+nommbreProducto+" has been added to your cart");
+        System.out.println("\n" + nommbreProducto + " has been added to your cart");
     }
 
     @Override
