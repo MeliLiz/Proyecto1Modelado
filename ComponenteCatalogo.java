@@ -2,6 +2,7 @@ import java.io.Serializable;
 import java.util.Iterator;
 /**
  * Clase abstracta que simula el componente de un catalogo
+ * @see Serializable
  */
 public abstract class ComponenteCatalogo implements Serializable{
 

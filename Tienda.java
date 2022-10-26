@@ -5,6 +5,9 @@ import java.io.Serializable;
 
 /**
  * Clase para la tienda virtual
+ * @see SujetoObservable
+ * @see Servicio
+ * @see Serializable
  */
 public class Tienda implements SujetoObservable, Servicio, Serializable {
 
@@ -235,9 +238,7 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
      * @param contrasena La contraseña del usuario buscado
      * @return Cliente El cliente buscado
      */
-    private Cliente getCliente(String nombre, String contrasena) {////////////////////////////////////////////////////////////////////////////// Revisar
-                                                                  ////////////////////////////////////////////////////////////////////////////// este
-                                                                  ////////////////////////////////////////////////////////////////////////////// metodo
+    private Cliente getCliente(String nombre, String contrasena) {
         Set<Integer> llaves = clientes.keySet();
 
         for (Integer llave : llaves) {

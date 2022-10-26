@@ -1,5 +1,6 @@
 /**
- * Clase que simula en celular Xiami 16 pus
+ * Clase que simula en celular Xiami 16 plus
+ * @see Producto
  */
 public class CelularXiami16plus extends Producto{
 

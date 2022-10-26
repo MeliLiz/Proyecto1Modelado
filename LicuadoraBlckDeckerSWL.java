@@ -1,5 +1,6 @@
 /**
  * Clase que simula una licuadora BlckDecker SWL
+ * @see Producto
  */
 public class LicuadoraBlckDeckerSWL extends Producto{
 

@@ -1,5 +1,6 @@
 /**
  * Clase que simula chicharos Herdz
+ * @see Producto
  */
 public class ChicharosHerdz extends Producto{
 

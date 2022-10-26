@@ -2,6 +2,7 @@ import java.util.Iterator;
 
 /**
  * Clase de un iterador nulo
+ * @see Iterator
  */
 public class IteradorNulo implements Iterator{
 

@@ -1,5 +1,6 @@
 /**
  * Clase que simula una computadora Asis VivBook
+ * @see Producto
  */
 public class ComputadoraAsisVivBook extends Producto{
 

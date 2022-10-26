@@ -2,6 +2,7 @@ import java.util.Iterator;
 
 /**
  * Clase que simula un producto del catalogo
+ * @see ComponenteCatalogo
  */
 public class Producto extends ComponenteCatalogo{
 

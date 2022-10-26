@@ -2,6 +2,7 @@ import java.io.Serializable;
 import java.util.Iterator;
 /**
  * La clase que simula un catalogo
+ * @see Serializable
  */
 public class Catalogo implements Serializable{
     private Categoria catalogo;

@@ -1,5 +1,6 @@
 /**
  * Clase que simula el queso panela Fudi 400g
+ * @see Producto
  */
 public class QuesoPanelaFudi extends Producto{
 

@@ -2,6 +2,8 @@ import java.io.Serializable;
 
 /**
  * Clase para el cliente
+ * @see Observador
+ * @see Serializable
  */
 public class Cliente implements Observador, Serializable {
 

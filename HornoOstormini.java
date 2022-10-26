@@ -1,5 +1,6 @@
 /**
  * Clase que simula un horno OstorMini
+ * @see Producto
  */
 public class HornoOstormini extends Producto{
     

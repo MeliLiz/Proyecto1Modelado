@@ -2,6 +2,7 @@ import java.util.Random;
 
 /**
  * Clase para el idioma de Español de España
+ * @see Idioma
  */
 public class EspanolEspana implements Idioma {
 

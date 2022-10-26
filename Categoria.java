@@ -4,7 +4,8 @@ import java.util.Iterator;
 
 /**
  * Clase para simular las categorias de un catalogo
- * @see Categoria
+ * @see ComponenteCatalogo
+ * @see Serializable
  */
 public class Categoria extends ComponenteCatalogo implements Serializable{
 

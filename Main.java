@@ -23,7 +23,7 @@ public class Main {
      */
     public static void inicio() {
         tienda.notificar();
-        System.out.println(tienda.getPaisOfertaTienda());
+        //System.out.println(tienda.getPaisOfertaTienda());
         principal: do {
             tiendaProxy = new TiendaProxy(tienda);// creamos una nueva tienda proxy
             int opcion = 0;
@@ -148,13 +148,12 @@ public class Main {
             tienda = (Tienda) entrada.readObject();
             entrada.close();
         } catch (Exception e) {// Si el archivo no se pudo leer
-            System.out.println("No se pudo deserializar");
+            System.out.println("Iniciando...");
             // Si el objeto no existe, creamos un cliente de la tienda
             Cliente cliente1 = new Cliente("Elec", "elec17", "Elec Kincaid", 96378415, "Rosewood street, Boston",
                     123456789, "Estados Unidos", 1, tienda);
 
         }
-        // System.out.println(tienda.getClientes().size());
 
         inicio();
     }

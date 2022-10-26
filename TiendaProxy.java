@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 /**
  * Clase que simula la copia de la tienda que usa el usuario
+ * @see Serializable
+ * @see Servicio
  */
 public class TiendaProxy implements Serializable, Servicio {
 
@@ -244,10 +246,11 @@ public class TiendaProxy implements Serializable, Servicio {
     private void mostrarTicket(){
         String deptoOferta=tiendaReal.getDeptoOferta(idUsuario);//Obtenemos la oferta del cliente (si tiene una)
         if(deptoOferta!=""){
-            idioma.ofertaAplicada(deptoOferta);
+            idioma.ofertaAplicada(deptoOferta);//imprimimos la oferta en pantalla
         }
         double pagado=0;
         double subtotal=0;
+        //Obtenemos el total y subtotal de la compra (el subtotal es el precio sin descuento, total es el precio con descuento)
         if(carrito.size()>0){
             for (Producto producto : carrito) {
                 double precio=producto.getPrecio();

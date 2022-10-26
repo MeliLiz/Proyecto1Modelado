@@ -1,6 +1,7 @@
 import java.io.Serializable;
 /**
  * Clase que simula una cuenta de dinero
+ * @see Serializable
  */
 public class Cuenta implements Serializable{
     private double saldoDisponible;//Saldo disponible

@@ -3,6 +3,7 @@ import java.util.Iterator;
 
 /**
  * Clase de un iterador composite
+ * @see Iterator
  */
 public class CompositeIterator implements Iterator{
 

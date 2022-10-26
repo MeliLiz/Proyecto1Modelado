@@ -1,5 +1,6 @@
 /**
  * Clase que simula un microondas Smsung A100
+ * @see Producto
  */
 public class MicroondasSmsungA100 extends Producto{
 
