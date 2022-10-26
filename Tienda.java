@@ -141,15 +141,6 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
     }
 
     /**
-     * Método para obtener el catálogo de la tienda
-     * 
-     * @return El catálogo de la tienda
-     */
-    public Catalogo getCatalogo() {
-        return this.catalogo;
-    }
-
-    /**
      * Metodo para saber si existe un usuario en el registro de usuarios de la
      * tienda
      * 
@@ -319,7 +310,7 @@ public class Tienda implements SujetoObservable, Servicio, Serializable {
      * 
      * @param clientes Los nuevos clientes de la tienda
      */
-    public void setCatalogo(Hashtable<Integer, Cliente> clientes) {
+    public void setClientes(Hashtable<Integer, Cliente> clientes) {
         this.clientes = clientes;
     }
 

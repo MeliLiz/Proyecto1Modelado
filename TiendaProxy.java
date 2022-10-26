@@ -8,13 +8,13 @@ import java.util.Scanner;
  */
 public class TiendaProxy implements Serializable, Servicio {
 
-    Tienda tiendaReal;
-    Idioma idioma;
-    ArrayList<Producto> carrito;
-    Integer idUsuario;
-    String deptoOferta;
-    Scanner scanner=new Scanner(System.in);
-    Scanner scanner2=new Scanner(System.in);
+    private Tienda tiendaReal;
+    private Idioma idioma;
+    private ArrayList<Producto> carrito;
+    private Integer idUsuario;
+    private String deptoOferta;
+    private Scanner scanner=new Scanner(System.in);
+    private Scanner scanner2=new Scanner(System.in);
  
     /**
      * Constructor
@@ -51,7 +51,7 @@ public class TiendaProxy implements Serializable, Servicio {
     /**
      * Método para mostrar el menú de opciones para mostrar el catalogo, comprar o salir
      */
-    public void menu(){
+    private void menu(){
 
         int respuesta=0;
         while(true){
@@ -88,7 +88,7 @@ public class TiendaProxy implements Serializable, Servicio {
     /**
      * Metodo para comenzar a realizar una compra
      */
-    public void comenzarCompra(){
+    private void comenzarCompra(){
         tiendaReal.mostrarCatalogo();
         int respuestaUsuario=0;
         while(true){
@@ -130,7 +130,7 @@ public class TiendaProxy implements Serializable, Servicio {
     /**
      * Metodo paramostrar opciones de finalizar compra o salir
      */
-    public void finalizarCompra(){
+    private void finalizarCompra(){
         idioma.menuFinalizarCompra();
         int respuesta=0;
         while (true) {
@@ -164,7 +164,7 @@ public class TiendaProxy implements Serializable, Servicio {
     /**
      * Método para mostrar la cantidad a pagar y hacer una compra segura
      */
-    public void realizarCompra() {
+    private void realizarCompra() {
         System.out.println("ID: "+idUsuario);
         String deptoOferta=tiendaReal.getDeptoOferta(idUsuario);//Obtenemos la oferta (si es que tiene) del usuario
         double suma=0;
@@ -214,7 +214,7 @@ public class TiendaProxy implements Serializable, Servicio {
     /**
      * Metodo para indicar que se cierra la sesión del usuario
      */
-    public void salir() {
+    private void salir() {
         idioma.saliendo();
     }
 
@@ -222,7 +222,7 @@ public class TiendaProxy implements Serializable, Servicio {
      * Metodo para agregar un producto al carrito de compra
      * @param codigo el codigo de barras del producto 
      */
-    public void agregarAlCarrito(String codigo){
+    private void agregarAlCarrito(String codigo){
         Producto producto=tiendaReal.getProducto(codigo);
         if(producto!=null){
             carrito.add(producto);
@@ -234,14 +234,14 @@ public class TiendaProxy implements Serializable, Servicio {
     /**
      * Metodo para cancelar una compra/ salir de sesión
      */
-    public void cancelarCompra(){
+    private void cancelarCompra(){
         idioma.saliendo();
     }
 
     /**
      * Método para mostrar el ticket de compra
      */
-    public void mostrarTicket(){
+    private void mostrarTicket(){
         String deptoOferta=tiendaReal.getDeptoOferta(idUsuario);//Obtenemos la oferta del cliente (si tiene una)
         if(deptoOferta!=""){
             idioma.ofertaAplicada(deptoOferta);

@@ -244,7 +244,7 @@ public class Cliente implements Observador, Serializable {
      * 
      * @param tienda La nueva tienda del cliente
      */
-    public void setPaisCliente(Tienda tienda) {
+    public void setTiendaCliente(Tienda tienda) {
         this.tienda = tienda;
     }
 
