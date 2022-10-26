@@ -65,6 +65,7 @@ public class TiendaProxy implements Serializable, Servicio {
                 }
             } catch (InputMismatchException e) {
                 idioma.errorInput();
+                scanner.next();
             }
         }
         switch (respuesta) {
@@ -101,6 +102,7 @@ public class TiendaProxy implements Serializable, Servicio {
                 }
             } catch (InputMismatchException e) {
                 idioma.errorInput();
+                scanner.next();
             }
         }
         String codigoDeBarras="";
@@ -141,6 +143,7 @@ public class TiendaProxy implements Serializable, Servicio {
                 }
             } catch (InputMismatchException e) {
                 idioma.errorInput();
+                scanner.next();
             }
         }
         if(respuesta==1){
@@ -156,7 +159,6 @@ public class TiendaProxy implements Serializable, Servicio {
     @Override
     public void mostrarCatalogo() {
         tiendaReal.mostrarCatalogo();
-        
     }
 
     /**
