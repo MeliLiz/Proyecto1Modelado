@@ -41,7 +41,7 @@ public class TiendaProxy implements Serializable, Servicio {
             deptoOferta=tiendaReal.getDeptoOferta(idUsuario);//se obtiene la oferta del usuario (si es que tiene una oferta disponible)
             idioma.saludar();
             if(deptoOferta!=""){
-                idioma.anunciarOferta();
+                idioma.anunciarOferta(deptoOferta);
             }
             menu();
         }else{
@@ -203,7 +203,6 @@ public class TiendaProxy implements Serializable, Servicio {
                     break;
                 }else{//Si el numero de cuenta bancaria no es correcto
                     idioma.errorCuentaBancaria();
-                    cancelarCompra();
                     break;
                 }
             } catch (InputMismatchException e) {
@@ -231,13 +230,6 @@ public class TiendaProxy implements Serializable, Servicio {
         }else{
            idioma.errorCodigoProducto();
         }
-    }
-
-    /**
-     * Metodo para cancelar una compra/ salir de sesión
-     */
-    private void cancelarCompra(){
-        idioma.saliendo();
     }
 
     /**

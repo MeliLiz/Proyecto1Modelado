@@ -62,10 +62,11 @@ public class EspanolLatino implements Idioma {
 
     /**
      * Método para informar de una oferta disponible
+     * @param deptoOferta El departamento de oferta
      */
     @Override
-    public void anunciarOferta() {
-        System.out.println("Usted tiene una oferta disponible en su pais");
+    public void anunciarOferta(String deptoOferta) {
+        System.out.println("Usted tiene una oferta disponible en su pais: "+deptoOferta);
 
     }
 

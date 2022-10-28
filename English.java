@@ -62,10 +62,11 @@ public class English implements Idioma {
 
     /**
      * Metodo para mostrar que el cliente tiene disponible una oferta
+     * @param deptoOferta El departamento de oferta
      */
     @Override
-    public void anunciarOferta() {
-        System.out.println("\nYou are lucky, you have a discount available in your country");
+    public void anunciarOferta(String deptoOferta) {
+        System.out.println("\nYou are lucky, you have a discount available in your country: "+deptoOferta);
 
     }
 

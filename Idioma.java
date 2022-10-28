@@ -29,8 +29,9 @@ public interface Idioma {
 
     /**
      * Método para enviar ofertas
+     * @param deptoOferta el departamento de oferta
      */
-    public void anunciarOferta();
+    public void anunciarOferta(String deptoOferta);
 
     /**
      * Metodo para pedir la cuenta bancaria al usuario
